@@ -20,6 +20,10 @@ Make sure you have the following installed in your system:
 - Create a new branch `git checkout -b <branch_name>`
 - Run `pnpm dev` and start developing
 
+### Important Docs
+- [Team decision Doc](https://docs.google.com/document/d/1QNtzHH0htso4upREefDTsfoanQfa5khGg5nX3uvCidU/edit)
+- [Design Doc](https://app.eraser.io/workspace/y108M6uSFX3iSYVQMbHR?origin=share)
+- [Figma Design](https://www.figma.com/file/GYwdok5q0bYfncDwNAVxm8/Chingu-Team-28?type=design&node-id=0-1&mode=design)
 ### Further reading
 
 - [Git Flow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
