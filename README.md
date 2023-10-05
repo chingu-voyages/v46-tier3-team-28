@@ -26,8 +26,9 @@ Make sure you have the following installed in your system:
 
 ### Built with
 
-- List Technologies
-
+- [Next.js](https://nextjs.org/)
+- [Drizzle ORM](https://orm.drizzle.team/)
+- [TailwindCSS](https://tailwindcss.com/)
 ## Project Guideline
 
 Your project's `readme` is as important to success as your code. For
