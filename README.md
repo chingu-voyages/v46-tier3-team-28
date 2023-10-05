@@ -1,4 +1,28 @@
-# voyage-tasks
+# Chingu Project
+## Prerequisites
+
+Make sure you have the following installed in your system:
+
+- [Node.js](https://nodejs.dev/en/)
+- [Git](https://git-scm.com/)
+- [pnpm](https://pnpm.io/)
+## Getting Started
+
+- Make a fork of the repo
+- Clone your forked repo locally `git clone <repo_link>`
+- `cd` into the cloned directory
+<!-- - Run `cp .env.example .env.local` and set up env variables -->
+- Run `pnpm install` to install all the dependencies
+- Create an upstream to the main repo `git remote add upstream https://github.com/chingu-voyages/v46-tier3-team-28.git`
+- To update your fork with the main repo run `git pull upstream main`. Make sure you update your repo regularly to keep up with the main repo.
+- Create a new branch `git checkout -b <branch_name>`
+- Run `pnpm dev` and start developing
+
+### Built with
+
+- List Technologies
+
+### Project Guideline
 
 Your project's `readme` is as important to success as your code. For 
 this reason you should put as much care into its creation and maintenance
