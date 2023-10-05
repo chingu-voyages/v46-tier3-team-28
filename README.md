@@ -1,4 +1,5 @@
 # Chingu Project
+
 ## Prerequisites
 
 Make sure you have the following installed in your system:
@@ -6,6 +7,7 @@ Make sure you have the following installed in your system:
 - [Node.js](https://nodejs.dev/en/)
 - [Git](https://git-scm.com/)
 - [pnpm](https://pnpm.io/)
+
 ## Getting Started
 
 - Copy the repo link
@@ -17,18 +19,23 @@ Make sure you have the following installed in your system:
 - Create a new branch `git checkout -b <branch_name>`
 - Run `pnpm dev` and start developing
 
+### Further reading
+
+- [Git Flow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary)
+
 ### Built with
 
 - List Technologies
 
 ### Project Guideline
 
-Your project's `readme` is as important to success as your code. For 
+Your project's `readme` is as important to success as your code. For
 this reason you should put as much care into its creation and maintenance
 as you would any other component of the application.
 
 If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
+written by an experienced Chingu, be your starting point -
 [Keys to a well written README](https://tinyurl.com/yk3wubft).
 
 And before we go there's "one more thing"! Once you decide what to include
