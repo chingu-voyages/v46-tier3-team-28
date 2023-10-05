@@ -8,13 +8,12 @@ Make sure you have the following installed in your system:
 - [pnpm](https://pnpm.io/)
 ## Getting Started
 
-- Make a fork of the repo
-- Clone your forked repo locally `git clone <repo_link>`
+- Copy the repo link
+- Create a clone of the repo locally `git clone <repo_link>`
 - `cd` into the cloned directory
 <!-- - Run `cp .env.example .env.local` and set up env variables -->
 - Run `pnpm install` to install all the dependencies
-- Create an upstream to the main repo `git remote add upstream https://github.com/chingu-voyages/v46-tier3-team-28.git`
-- To update your fork with the main repo run `git pull upstream main`. Make sure you update your repo regularly to keep up with the main repo.
+- To update your local repo with the main repo run `git pull origin main`. Make sure you update your repo regularly before working on new branches.
 - Create a new branch `git checkout -b <branch_name>`
 - Run `pnpm dev` and start developing
 
