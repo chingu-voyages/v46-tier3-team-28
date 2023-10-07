@@ -20,10 +20,20 @@ Make sure you have the following installed in your system:
 - Create a new branch `git checkout -b <branch_name>`
 - Run `pnpm dev` and start developing
 
+## IDE Integration with Prettier
+
+- Install the "Prettier - Code formatter" extension for VS Code.
+- Open VS Code settings (Ctrl+ (Windows/Linux), or Cmd+ (Mac),).
+- Search for "Editor: Default Formatter" and select it. Choose "Prettier - Code formatter" as the default.
+- Search for "Editor: Format On Save" and enable it to automatically format your code when you save.
+- Optionally, specify the path to your `.prettierrc.js` configuration file by searching for "Prettier: Config Path" and adding the path.
+
 ### Important Docs
+
 - [Team decision Doc](https://docs.google.com/document/d/1QNtzHH0htso4upREefDTsfoanQfa5khGg5nX3uvCidU/edit)
 - [Design Doc](https://app.eraser.io/workspace/y108M6uSFX3iSYVQMbHR?origin=share)
 - [Figma Design](https://www.figma.com/file/GYwdok5q0bYfncDwNAVxm8/Chingu-Team-28?type=design&node-id=0-1&mode=design)
+
 ### Further reading
 
 - [Git Flow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
@@ -34,6 +44,7 @@ Make sure you have the following installed in your system:
 - [Next.js](https://nextjs.org/)
 - [Drizzle ORM](https://orm.drizzle.team/)
 - [TailwindCSS](https://tailwindcss.com/)
+
 ## Project Guideline
 
 Your project's `readme` is as important to success as your code. For

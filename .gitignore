@@ -614,6 +614,12 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# Eslint & Prettier
+dist/
+.prettierrc.js
+.eslintrc.js
+env.d.ts
+
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
