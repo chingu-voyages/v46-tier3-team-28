@@ -4,7 +4,7 @@ import LoginForm from "@/components/LoginForm";
 
 const LoginPage = () => {
   return (
-    <main className="w-full h-screen flex items-center justify-center flex-col bg-[#03022D]">
+    <main className="w-full h-fit min-h-screen flex items-center justify-end overflow-y-auto flex-col bg-[#03022D]">
       <LoginForm />
       <BottomNav />
     </main>

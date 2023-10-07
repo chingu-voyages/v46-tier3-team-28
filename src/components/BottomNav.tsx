@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const BottomNav = () => {
   return (
-    <nav className="bg-[#711212] w-full h-fit py-14 pl-[10%] flex flex-row gap-5 fixed inset-x-0 bottom-0">
+    <nav className="bg-[#711212] w-full h-fit py-10 pl-[10%] flex flex-row gap-5">
       <li className="list-none text-gray-100 hover:text-gray-50">
         {" "}
         <Link href="login">Login</Link>
