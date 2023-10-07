@@ -26,9 +26,6 @@ dependencies:
   drizzle-orm:
     specifier: ^0.28.6
     version: 0.28.6(@planetscale/database@1.11.0)
-  eslint-config-prettier:
-    specifier: ^9.0.0
-    version: 9.0.0(eslint@8.50.0)
   eslint-plugin-import:
     specifier: ^2.28.1
     version: 2.28.1(@typescript-eslint/parser@6.7.4)(eslint-import-resolver-typescript@3.6.1)(eslint@8.50.0)
@@ -41,9 +38,6 @@ dependencies:
   next:
     specifier: 13.5.4
     version: 13.5.4(react-dom@18.2.0)(react@18.2.0)
-  prettier:
-    specifier: ^3.0.3
-    version: 3.0.3
   react:
     specifier: ^18
     version: 18.2.0
@@ -79,9 +73,15 @@ devDependencies:
   eslint-config-next:
     specifier: 13.5.4
     version: 13.5.4(eslint@8.50.0)(typescript@5.2.2)
+  eslint-config-prettier:
+    specifier: ^9.0.0
+    version: 9.0.0(eslint@8.50.0)
   postcss:
     specifier: ^8
     version: 8.4.31
+  prettier:
+    specifier: ^3.0.3
+    version: 3.0.3
   tailwindcss:
     specifier: ^3
     version: 3.3.3
@@ -1396,7 +1396,7 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.50.0
-    dev: false
+    dev: true
 
   /eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -2501,7 +2501,7 @@ packages:
     resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
+    dev: true
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
