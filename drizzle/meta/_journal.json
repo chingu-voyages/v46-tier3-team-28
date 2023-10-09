@@ -1,13 +1,1 @@
-{
-  "version": "5",
-  "dialect": "mysql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1696844545761,
-      "tag": "0000_stiff_slayback",
-      "breakpoints": true
-    }
-  ]
-}
+{"version":"5","dialect":"mysql","entries":[{"idx":1,"version":"5","when":1696879933627,"tag":"0001_dapper_madrox","breakpoints":true}]}
