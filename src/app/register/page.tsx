@@ -1,9 +1,15 @@
-import React from 'react'
+import RegistrationForm from "@/components/RegistrationForm";
+// import BottomNav from "@/components/BottomNav";
+import React from "react";
 
-const page = () => {
+const RegistrationPage = () => {
   return (
-    <div>Hello! welcome to the register page</div>
-  )
-}
+    <main className="w-full h-fit flex flex-col items-center justify-start overflow-y-auto bg-[#03022D]">
+      <RegistrationForm />
+      {/* <BottomNav /> */}
+    </main>
+  );
+};
 
-export default page
+export default RegistrationPage;
+
