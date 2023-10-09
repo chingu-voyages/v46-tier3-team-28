@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import BottomNav from "@/components/BottomNav";
+import LoginForm from "@/components/LoginForm";
 
-const page = () => {
+const LoginPage = () => {
   return (
-    <div>Hello! welcome to the login page</div>
-  )
-}
+    <main className="w-full h-fit min-h-screen flex items-center justify-end overflow-y-auto flex-col bg-[#03022D]">
+      <LoginForm />
+      <BottomNav />
+    </main>
+  );
+};
 
-export default page
+export default LoginPage;
