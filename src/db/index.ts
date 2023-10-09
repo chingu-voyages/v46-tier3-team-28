@@ -12,7 +12,4 @@ const connection = connect({
 
 export const db = drizzle(connection);
 
-export const migratation = async () => {
-  migrate(db, { migrationsFolder: 'drizzle' });
-};
 
