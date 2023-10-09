@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "db:introspect": "drizzle-kit introspect:mysql",
+    "db:push": "drizzle-kit push:mysql",
+    "migrations:generate": "drizzle-kit generate:mysql",
+    "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts",
+    "migrations:push": "node -r esbuild-register src/db/migrate.ts"
   },
   "dependencies": {
     "@planetscale/database": "^1.11.0",
@@ -33,6 +38,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
     "drizzle-kit": "^0.19.13",
+    "esbuild-register": "^3.5.0",
     "eslint": "^8.50.0",
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
