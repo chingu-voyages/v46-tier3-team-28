@@ -33,12 +33,16 @@ const RegistrationForm = () => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity(
-                "Please type your first and last name."
-              )
+            onInvalid={(e) => {
+              // e.target.setCustomValidity(
+              //     "Please type your first and last name."
+              // )
+              }
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }
+          }
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -51,10 +55,13 @@ const RegistrationForm = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity("Please type your preferred username.")
+            onInvalid={(e) => {
+              // e.target.setCustomValidity("Please type your preferred username.")
+              }
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -67,12 +74,15 @@ const RegistrationForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity(
-                "Please type your active email address."
-              )
+            onInvalid={(e) => {
+              // e.target.setCustomValidity(
+              //     "Please type your active email address."
+              // )
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            }
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -85,10 +95,13 @@ const RegistrationForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity("Please type your password.")
+            onInvalid={(e) => {
+              // e.target.setCustomValidity("Please type your password.")
+              }
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -101,10 +114,13 @@ const RegistrationForm = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity("Please confirm your password.")
+            onInvalid={(e) => {
+              // e.target.setCustomValidity("Please confirm your password.")
+              }
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         {/* text-[#03022D] */}
