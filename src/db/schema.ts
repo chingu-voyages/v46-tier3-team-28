@@ -4,7 +4,7 @@ import type { AdapterAccount } from '@auth/core/adapters';
 
 export const users = mysqlTable('user', {
   id: varchar('id', { length: 255 }).notNull().primaryKey(),
-  fullName: varchar('fullName', { length: 255 }),
+  name: varchar('name', { length: 255 }),
   username: varchar('username', { length: 255 }),
   email: varchar('email', { length: 255 }).notNull(),
   emailVerified: timestamp('emailVerified', {
@@ -99,7 +99,10 @@ export const items = mysqlTable('item', {
 
 export const itemRelations = relations(items, ({ one, many }) => ({
   itemCategories: many(itemCategories),
-  collection: one(collections),
+  collection: one(collections, {
+    fields: [items.collectionId],
+    references: [collections.id],
+  }),
 }));
 
 export const categories = mysqlTable('category', {
