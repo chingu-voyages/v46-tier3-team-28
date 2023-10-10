@@ -6,6 +6,7 @@ export const users = mysqlTable('user', {
   id: varchar('id', { length: 255 }).notNull().primaryKey(),
   name: varchar('name', { length: 255 }),
   username: varchar('username', { length: 255 }),
+  password: varchar('password', { length: 255 }),
   email: varchar('email', { length: 255 }).notNull(),
   emailVerified: timestamp('emailVerified', {
     mode: 'date',

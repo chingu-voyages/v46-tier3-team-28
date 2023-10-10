@@ -4,12 +4,13 @@ import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import bcrypt from 'bcrypt';
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
   session: { strategy: 'jwt' },
   pages: {
-    error: 'api/auth/signin',
+    // error: 'api/auth/signin',
   },
   providers: [
     GithubProvider({
@@ -32,31 +33,16 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password', placeholder: '***************' },
       },
       async authorize(credentials, req) {
-        const user = {
-          id: '1',
-          name: 'Reckson',
-          email: credentials?.email,
-          username: "someone",
-          image: 'url_link',
-        };
-
+        // Check if data exists
         const userData = await db.query.users.findFirst({
           where: (users, { eq }) => eq(users.email, credentials?.email as string),
         });
 
-        console.log({ userData });
-        // const res = await fetch('/user/endpoint', {
-        //   method: 'POST',
-        //   body: JSON.stringify(credentials),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // });
+        // Compare password with hash
+        const match = await bcrypt.compare(credentials?.password as string, userData?.password as string);
 
-        // const user = await res.json();
-
-        if (user) {
-          return user;
+        if (userData && match) {
+          return userData;
         }
 
         return null;
