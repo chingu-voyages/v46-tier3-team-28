@@ -10,7 +10,8 @@ export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
   session: { strategy: 'jwt' },
   pages: {
-    // error: 'api/auth/signin',
+    signIn: '/login',
+    signOut: '/',
   },
   providers: [
     GithubProvider({
