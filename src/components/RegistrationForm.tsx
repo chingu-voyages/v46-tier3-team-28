@@ -51,9 +51,12 @@ const RegistrationForm = () => {
             onInvalid={(e) =>
               e.target.setCustomValidity(
                 "Please type your active email address."
-              )
+              
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }
+          }
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -71,7 +74,9 @@ const RegistrationForm = () => {
                 "Please type your complete name."
               )
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -86,8 +91,11 @@ const RegistrationForm = () => {
             required
             onInvalid={(e) =>
               e.target.setCustomValidity("Please create your new password.")
+
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -103,7 +111,9 @@ const RegistrationForm = () => {
             onInvalid={(e) =>
               e.target.setCustomValidity("Please re-enter your new password.")
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            onInput={(e) => {
+              // e.target.setCustomValidity("")
+            }}
           />
         </fieldset>
         <p className="w-full text-left text-xs cursor-pointer text-[#737373]">
