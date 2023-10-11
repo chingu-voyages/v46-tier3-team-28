@@ -36,6 +36,7 @@ Temporary Items
 
 ### NextJS ###
 # dependencies
+pnpm-lock.yaml
 /node_modules
 /.pnp
 .pnp.js
@@ -94,6 +95,7 @@ next-env.d.ts
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
+./idea
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
