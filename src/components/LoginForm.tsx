@@ -46,7 +46,8 @@ const LoginForm = () => {
                 "Please type your registered email."
               )
             }
-            onInput={(e) => e.target.setCustomValidity("")}
+            }
+            // onInput={(e) => e.target.setCustomValidity("")}
           />
         </fieldset>
         <fieldset className="flex flex-col gap-2">
@@ -59,10 +60,10 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            onInvalid={(e) =>
-              e.target.setCustomValidity("Please type your password.")
-            }
-            onInput={(e) => e.target.setCustomValidity("")}
+            /*onInvalid={(e) =>
+              // e.target.setCustomValidity("Please type your password.")
+            }*/
+            // onInput={(e) => e.target.setCustomValidity("")}
           />
         </fieldset>
         <p className="w-full flex flex-row justify-end cursor-pointer">
