@@ -45,31 +45,22 @@ Make sure you have the following installed in your system:
 - [Drizzle ORM](https://orm.drizzle.team/)
 - [TailwindCSS](https://tailwindcss.com/)
 
-## Project Guideline
+## 🎨 Demo
 
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+Check out the website: [DEMO](https://v46-tier3-team-28-8mwx.vercel.app/)
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+## 👩🏽‍💻 Contributing
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+- Contributions make the open source community such an amazing place to learn, inspire, and create.
+- Any contributions you make are greatly appreciated.
+- Check out our [contribution guidelines](/CONTRIBUTING.md) for more information. (wip⚙️)
 
-> Own it & Make it your Own!
+## 👨‍👩‍👦 Community
 
-## Team Documents
+Don't forget to join the community - [Join us](https://www.chingu.io/)
 
-You may find these helpful as you work together to organize your project.
+## 💪🏽 Thanks to all Contributors
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+Thanks a lot for spending your time helping our project grow. Thanks a lot! Keep rocking🍻
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
-
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+[![Contributors](https://contrib.rocks/image?repo=chingu-voyages/v46-tier3-team-28)](https://github.com/chingu-voyages/v46-tier3-team-28/graphs/contributors)
