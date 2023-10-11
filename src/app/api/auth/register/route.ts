@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     });
 
     // If successful 200 status and initialise signIn with NextAuth
-    return new Response(JSON.stringify(uuidv4()), { status: 200 });
+    return new Response(null, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });
