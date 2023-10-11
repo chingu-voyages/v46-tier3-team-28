@@ -20,10 +20,20 @@ Make sure you have the following installed in your system:
 - Create a new branch `git checkout -b <branch_name>`
 - Run `pnpm dev` and start developing
 
+## IDE Integration with Prettier
+
+- Install the "Prettier - Code formatter" extension for VS Code.
+- Open VS Code settings (Ctrl+ (Windows/Linux), or Cmd+ (Mac),).
+- Search for "Editor: Default Formatter" and select it. Choose "Prettier - Code formatter" as the default.
+- Search for "Editor: Format On Save" and enable it to automatically format your code when you save.
+- Optionally, specify the path to your `.prettierrc.js` configuration file by searching for "Prettier: Config Path" and adding the path.
+
 ### Important Docs
+
 - [Team decision Doc](https://docs.google.com/document/d/1QNtzHH0htso4upREefDTsfoanQfa5khGg5nX3uvCidU/edit)
 - [Design Doc](https://app.eraser.io/workspace/y108M6uSFX3iSYVQMbHR?origin=share)
 - [Figma Design](https://www.figma.com/file/GYwdok5q0bYfncDwNAVxm8/Chingu-Team-28?type=design&node-id=0-1&mode=design)
+
 ### Further reading
 
 - [Git Flow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
@@ -34,31 +44,23 @@ Make sure you have the following installed in your system:
 - [Next.js](https://nextjs.org/)
 - [Drizzle ORM](https://orm.drizzle.team/)
 - [TailwindCSS](https://tailwindcss.com/)
-## Project Guideline
 
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+## 🎨 Demo
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+Check out the website: [DEMO](https://v46-tier3-team-28-8mwx.vercel.app/)
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+## 👩🏽‍💻 Contributing
 
-> Own it & Make it your Own!
+- Contributions make the open source community such an amazing place to learn, inspire, and create.
+- Any contributions you make are greatly appreciated.
+- Check out our [contribution guidelines](/CONTRIBUTING.md) for more information. (wip⚙️)
 
-## Team Documents
+## 👨‍👩‍👦 Community
 
-You may find these helpful as you work together to organize your project.
+Don't forget to join the community - [Join us](https://www.chingu.io/)
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+## 💪🏽 Thanks to all Contributors
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
+Thanks a lot for spending your time helping our project grow. Thanks a lot! Keep rocking🍻
 
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+[![Contributors](https://contrib.rocks/image?repo=chingu-voyages/v46-tier3-team-28)](https://github.com/chingu-voyages/v46-tier3-team-28/graphs/contributors)
