@@ -12,6 +12,8 @@ const RegistrationForm = () => {
   function registerUser(e: any) {
     e.preventDefault();
 
+    //registration code here
+
     setFullName('');
     setEmail('');
     setPassword('');
