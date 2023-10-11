@@ -74,3 +74,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Homepage style */
+
+.homepage_title {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+
+.homepage_subtitle{
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+
+.profile_image {
+  display: flex;
+  margin-left: 91%;
+}
