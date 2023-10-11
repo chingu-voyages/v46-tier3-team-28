@@ -11,7 +11,6 @@ const RegistrationForm = () => {
 
   function registerUser(e: any) {
     e.preventDefault();
-    //do something
 
     setFullName('');
     setEmail('');
@@ -56,7 +55,7 @@ const RegistrationForm = () => {
                 (e.target as HTMLInputElement).setCustomValidity('Please type your active email address.')
               }
               onInput={(e) => {
-                // e.target.setCustomValidity("")
+                (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
           </fieldset>
@@ -72,7 +71,7 @@ const RegistrationForm = () => {
               required
               onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please type your complete name.')}
               onInput={(e) => {
-                // e.target.setCustomValidity("")
+                (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
           </fieldset>
@@ -88,7 +87,7 @@ const RegistrationForm = () => {
               required
               onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please create your new password.')}
               onInput={(e) => {
-                // e.target.setCustomValidity("")
+                (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
           </fieldset>
@@ -104,7 +103,7 @@ const RegistrationForm = () => {
               required
               onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please re-enter your new password.')}
               onInput={(e) => {
-                // e.target.setCustomValidity("")
+                (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
           </fieldset>

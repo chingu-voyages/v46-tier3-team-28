@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
+import LandingPage from '@/components/LandingPage';
 
 export default function Home() {
   const { data: session } = useSession();
@@ -17,7 +18,10 @@ export default function Home() {
       ) : (
         <button onClick={() => signIn()}>Sign in</button>
       )}
-      <div>Landing Page</div>
+      <div>
+        <LandingPage />
+      
+      </div>
     </main>
   );
 }
