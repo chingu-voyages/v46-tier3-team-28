@@ -2,12 +2,14 @@
 
 import { signIn, signOut, useSession } from 'next-auth/react';
 import LandingPage from '@/components/LandingPage';
+import Nav from '@/components/Nav';
 
 export default function Home() {
   const { data: session } = useSession();
 
   return (
-    <main>
+    <main className="home-img">
+      <Nav/>
       {session ? (
         <div>
           <span>
