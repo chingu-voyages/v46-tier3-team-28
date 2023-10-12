@@ -3,15 +3,16 @@ import Feed from "./Feed"
 function LandingPage() {
   return (
     <section>
-      <h1 className="text-center">Discover the easiest way to save and organize your favorite URLs with our intuitive bookmarking app
+      <div className="home_img">
+      <h1 className="text-center text-white">Discover the easiest way to save and organize your favorite URLs with our intuitive bookmarking app
       </h1>
-      <p className="text-center">Capture, Categorize, and Share with Ease
+      <p className="text-center text-white">Capture, Categorize, and Share with Ease
       </p>
 
       <Feed/>
-     
+      </div>
     </section>
   )
 }
 
-export default LandingPage
+export default LandingPage;

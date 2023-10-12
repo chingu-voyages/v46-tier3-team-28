@@ -11,7 +11,7 @@ export default function Home() {
       {session ? (
         <div>
           <span>
-            <h2>Welcome! {session?.user?.name ?? session?.user?.email ?? "friend"}</h2>
+            <h2>Welcome! {session?.user?.name ?? session?.user?.email ?? 'friend'}</h2>
           </span>
           <button onClick={() => signOut()}>Sign Out</button>
         </div>
@@ -20,7 +20,6 @@ export default function Home() {
       )}
       <div>
         <LandingPage />
-      
       </div>
     </main>
   );
