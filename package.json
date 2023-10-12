@@ -34,6 +34,7 @@
     "mysql2": "^3.6.1",
     "next": "13.5.4",
     "next-auth": "^4.23.2",
+    "node-html-parser": "^6.1.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0",
