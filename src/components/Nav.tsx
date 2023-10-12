@@ -11,23 +11,24 @@ const Nav = () => {
 
   return (
     <div>
-      <nav className="flex-between w-full mb-16 pt-3">
+      <nav className="relative container mx-auto pt-6">
         <div className="flex items-center">
           <Image
             src="/assets/images/logo.png"
             alt="Page Pocket"
-            width={30}
-            height={30}
+            width={40}
+            height={40}
           />
           <p className="ml-2">Page Pocket</p>
+          <div className="ml-auto">
           <Image
             src="/assets/images/profile.png"
             alt="Page Pocket"
-            width={30}
-            height={30}
-            className="profile-img"
+            width={35}
+            height={35}
             onClick={() => setToggleDropdown((prev) => !prev)}  
-          />
+            />
+          </div>
           
           {toggleDropdown && (
               <div className='dropdown'>
