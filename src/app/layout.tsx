@@ -5,7 +5,8 @@ import { Inter } from 'next/font/google';
 import { authOptions } from './api/auth/[...nextauth]/authOptions';
 import SessionProvider from './_providers/session-provider';
 import Nav from '@/components/Nav';
-
+import { Toaster } from 'sonner';
+import { TailwindIndicator } from '@/components/tailwind-indicator';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -22,6 +23,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SessionProvider session={session}>
           <Nav />
           {children}
+          <Toaster />
+          <TailwindIndicator />
         </SessionProvider>
       </body>
     </html>
