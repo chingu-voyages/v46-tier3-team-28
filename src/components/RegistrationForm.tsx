@@ -4,17 +4,36 @@ import Link from 'next/link';
 import OAuthButtons from './OAuthButtons';
 
 const RegistrationForm = () => {
-  const [fullName, setFullName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordErrorView, setPasswordErrorView] = useState('hidden');
 
-  function registerUser(e: any) {
+  async function registerUser(e: any) {
     e.preventDefault();
 
-    //registration code here
+    if (password !== confirmPassword) {
+      setPasswordErrorView('flex');
+      setTimeout(() => {
+        setPasswordErrorView('hidden');
+      }, 5000);
+      return;
+    }
 
-    setFullName('');
+    const register = await fetch('http://localhost:3000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        password,
+        email,
+      }),
+    });
+
+    setName('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
@@ -66,10 +85,10 @@ const RegistrationForm = () => {
             <input
               className="text-[#03022D] w-full bg-white text-center p-2 outline-none border-[1px] border-[#D9D9D9] rounded-md"
               type="text"
-              name="fullName"
+              name="name"
               placeholder="Juan Dela Cruz"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
               onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity('Please type your complete name.')}
               onInput={(e) => {
@@ -92,6 +111,7 @@ const RegistrationForm = () => {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
+            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>Passwords don't match!</p>
           </fieldset>
           <fieldset className="flex flex-col gap-2">
             <label className="text-xs text-[#333333]">Confirm Password</label>
@@ -108,6 +128,7 @@ const RegistrationForm = () => {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
+            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>Passwords don't match!</p>
           </fieldset>
           <p className="w-full text-left text-xs cursor-pointer text-[#737373]">
             Password must contain at least 8 characters.
