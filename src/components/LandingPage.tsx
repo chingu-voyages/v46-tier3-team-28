@@ -1,5 +1,5 @@
 import Feed from "./Feed";
-import Footer from "./Footer";
+
 
 const LandingPage = () => {
   return (
@@ -11,7 +11,7 @@ const LandingPage = () => {
           <Feed />
         </div>
       </section>
-      <Footer />
+     
     </div>
   );
 }

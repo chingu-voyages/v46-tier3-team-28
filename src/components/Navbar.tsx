@@ -3,9 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { signOut } from 'next-auth/react';
+import { BsFillMoonStarsFill } from "react-icons/bs";
 
-function Nav() {
+function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -16,13 +18,14 @@ function Nav() {
   };
 
   return (
-    <div>
-      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" className="flex items-center">
-            <img src="/assets/images/pagepocket-logo.jpg" className="h-8 mr-3" alt="Page Pocket Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Page Pocket</span>
-          </a>
+    <div className={darkMode ? "dark" : ""}>
+    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" className="flex items-center">
+          <img src="/assets/images/pagepocket-logo.jpg" className="h-8 mr-3" alt="Page Pocket Logo" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Page Pocket</span>
+        </a>
+        <div className="flex items-center"> {/* Container for icons */}
           <button
             data-collapse-toggle="navbar-hamburger"
             type="button"
@@ -42,6 +45,11 @@ function Nav() {
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>
           </button>
+          <BsFillMoonStarsFill
+            onClick={() => setDarkMode(!darkMode)}
+            className="cursor-pointer text-2xl ml-3" // Add margin for spacing
+          />
+        </div>
           <div className={`w-full ${isDropdownOpen ? 'block' : 'hidden'}`} id="navbar-hamburger">
             <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
               <li>
@@ -75,4 +83,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Navbar;
