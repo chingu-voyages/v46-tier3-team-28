@@ -22,7 +22,7 @@ export default function Home() {
       )}
       <div>
         <LandingPage />
-      </div>
+      </div>z
     </main>
   );
 }
