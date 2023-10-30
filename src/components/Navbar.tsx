@@ -1,8 +1,6 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+"use client";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
 function Navbar() {

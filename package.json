@@ -49,8 +49,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
     "@types/react-dom": "^18",
     "@types/uuid": "^9.0.5",
     "autoprefixer": "^10",
@@ -62,6 +62,6 @@
     "postcss": "^8",
     "prettier": "^3.0.3",
     "tailwindcss": "^3",
-    "typescript": "^5"
+    "typescript": "^5.2.2"
   }
 }
