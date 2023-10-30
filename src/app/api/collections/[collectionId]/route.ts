@@ -1,17 +1,11 @@
 import { db } from '@/db';
 import { collections } from '@/db/schema';
-import { collectionPatchSchema } from '@/lib/validators/register';
+import { collectionPatchSchema } from '@/lib/validators/collections';
 import { eq, sql } from 'drizzle-orm';
 import { getServerSession } from 'next-auth';
 import z from 'zod';
 import { authOptions } from '../../auth/[...nextauth]/authOptions';
-
-// Add PATCH and DELETE methods for unique collection id
-const routeContextSchema = z.object({
-  params: z.object({
-    collectionId: z.string(),
-  }),
-});
+import { routeContextSchema } from '@/lib/validators/collections';
 
 export async function PATCH(req: Request, context: z.infer<typeof routeContextSchema>) {
   try {

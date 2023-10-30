@@ -1,9 +1,9 @@
 import { db } from '@/db';
 import { collections } from '@/db/schema';
-import { collectionCreateSchema } from '@/lib/validators/register';
 import { getServerSession } from 'next-auth';
 import z from 'zod';
 import { authOptions } from '../auth/[...nextauth]/authOptions';
+import { collectionCreateSchema } from '@/lib/validators/collections';
 
 export async function GET(req: Request) {
   try {
