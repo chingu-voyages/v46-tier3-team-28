@@ -1,5 +1,4 @@
-import Feed from "./Feed";
-
+import Feed from "@/components/Feed/Feed";
 
 const LandingPage = () => {
   return (
@@ -11,7 +10,6 @@ const LandingPage = () => {
           <Feed />
         </div>
       </section>
-     
     </div>
   );
 }
