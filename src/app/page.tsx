@@ -1,9 +1,9 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
-import LandingPage from '@/components/LandingPage';
-import Navbar from '@/components/Navbar';
-import Footer from "@/components/Footer";
+import LandingPage from '@/components/LandingPage/LandingPage';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   const { data: session } = useSession();
