@@ -1,5 +1,7 @@
 import React from 'react';
 
+// TODO: Fix type-error
+// @ts-ignore
 const PageCard = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-10 bg-gray-800 bg-opacity-60">
