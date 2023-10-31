@@ -1,5 +1,3 @@
-import React from 'react';
-
 // TODO: Fix type-error
 // @ts-ignore
 const PageCard = ({ onClose }) => {

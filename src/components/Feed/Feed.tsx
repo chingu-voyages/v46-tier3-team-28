@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PageCard from './PageCard';
+import PageCard from '@/components/PageCard/PageCard';
 
 const Feed = () => {
   const [inputUrl, setInputUrl] = useState('');
