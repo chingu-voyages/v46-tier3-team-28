@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { NextAuthOptions, Session } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -50,32 +50,32 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  // callbacks: {
-  //   jwt: async ({ token, user }) => {
-  //     if (user) {
-  //       token.email = user.email;
-  //       token.name = user.name;
-  //       token.picture = user.image;
-  //     }
+  callbacks: {
+    // jwt: async ({ token, user }) => {
+    //   if (user) {
+    //     token.email = user.email;
+    //     token.name = user.name;
+    //     token.picture = user.image;
+    //   }
 
-  //     return token;
-  //   },
-  //   session: async ({ session, token }) => {
-  //     console.log({ session, token });
-  //     if (token) {
-  //       const newSession: Session = {
-  //         ...session,
-  //         user: {
-  //           email: token.email,
-  //           name: token.name,
-  //           image: token.picture,
-  //         },
-  //       };
+    //   return token;
+    // },
+    session: async ({ session, token }) => {
+      if (token) {
+        const user = await db.query.users.findFirst({
+          where: (users, { eq }) => eq(users.email, session.user?.email as string),
+        });
 
-  //       return newSession;
-  //     }
+        return {
+          ...session,
+          user: {
+            ...session.user,
+            id: user?.id,
+          },
+        };
+      }
 
-  //     return session;
-  //   },
-  // },
+      return session;
+    },
+  },
 };

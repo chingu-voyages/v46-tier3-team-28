@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 import { Inter } from 'next/font/google';
 import { authOptions } from './api/auth/[...nextauth]/authOptions';
 import SessionProvider from './_providers/session-provider';
-import Nav from '@/components/Navbar';
 import { Toaster } from 'sonner';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import OAuthButtons from "./OAuthButtons";
+import OAuthButtons from "@/components/OAuthButtons/OAuthButtons";
 
 const RegistrationForm = () => {
   const [name, setName] = useState('');
