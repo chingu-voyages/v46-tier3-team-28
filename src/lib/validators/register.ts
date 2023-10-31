@@ -5,3 +5,5 @@ export const registerSchema = z.object({
   name: z.string().nullish(),
   password: z.string().min(8),
 });
+
+
