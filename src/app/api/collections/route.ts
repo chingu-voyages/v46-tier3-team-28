@@ -53,10 +53,10 @@ export async function POST(req: Request) {
 
     // Parse and validate input
     const json = await req.json();
-    const { title } = collectionCreateSchema.parse(json);
+    const { title, description } = collectionCreateSchema.parse(json);
 
     // Create new collection entry in db linked to user
-    const collection = await db.insert(collections).values({ title, userId: userDetails?.id });
+    const collection = await db.insert(collections).values({ title, userId: userDetails?.id, description });
 
     return new Response(JSON.stringify(collection), { status: 200 });
   } catch (error) {
@@ -67,4 +67,3 @@ export async function POST(req: Request) {
     return new Response(null, { status: 500 });
   }
 }
-

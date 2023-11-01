@@ -12,10 +12,12 @@ export const collectionCreateSchema = z.object({
   // createdAt: z.date().nullish(),
   // updatedAt: z.date().nullish(),
   title: z.string(),
+  description: z.string(),
   // private: z.boolean().nullish(),
 });
 
 export const collectionPatchSchema = z.object({
   title: z.string().optional(),
   private: z.boolean().optional(),
+  description: z.string(),
 });

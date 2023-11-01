@@ -27,6 +27,7 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
       .set({
         title: payload.title,
         private: payload.private,
+        description: payload.description,
       })
       .where(eq(collections.id, parseInt(params.collectionId)));
 
