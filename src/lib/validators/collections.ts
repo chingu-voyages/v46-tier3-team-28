@@ -14,7 +14,6 @@ export const collectionCreateSchema = z.object({
   title: z.string(),
   description: z.string(),
   private: z.string().optional(),
-  userId: z.string(),
 });
 
 export const collectionPatchSchema = z.object({

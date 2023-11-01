@@ -22,7 +22,6 @@ export function CreateDialog() {
 
       const data = new FormData(event.currentTarget);
       const objFormData = Object.fromEntries(data.entries());
-      console.log(objFormData);
 
       const res = await fetch('/api/collections', {
         method: 'POST',
@@ -32,14 +31,15 @@ export function CreateDialog() {
         body: JSON.stringify(objFormData),
       });
 
-      console.log(res);
-
       if (res.ok) {
         // Redirect to unique collection page
         setLoading(false);
         toast.success('Successfully created collection!');
         router.refresh();
         setOpen(false);
+      } else {
+        setLoading(false);
+        toast.error('Cannot create Collection. Please try again!');
       }
     } catch (error) {
       setLoading(false);
