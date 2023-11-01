@@ -15,11 +15,6 @@ export const collectionCreateSchema = z.object({
   description: z.string(),
   private: z.string().optional(),
   userId: z.string(),
-  // createdAt: z.date().nullish(),
-  // updatedAt: z.date().nullish(),
-  title: z.string(),
-  description: z.string(),
-  // private: z.boolean().nullish(),
 });
 
 export const collectionPatchSchema = z.object({
