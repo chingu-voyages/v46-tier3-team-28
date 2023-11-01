@@ -15,14 +15,6 @@ export async function GET(req: Request) {
 
     const { user } = session;
 
-    // const userDetails = await db.query.users.findFirst({
-    //   where: (users, { eq }) => eq(users.email, user?.email as string),
-    // });
-
-    // if (!userDetails) {
-    //   return new Response('User not found!', { status: 404 });
-    // }
-
     const collections = await db.query.collections.findMany({
       where: (collections, { eq }) => eq(collections.userId, user.id as string),
     });
@@ -42,14 +34,6 @@ export async function POST(req: Request) {
     }
 
     const { user } = session;
-
-    // const userDetails = await db.query.users.findFirst({
-    //   where: (users, { eq }) => eq(users.email, user?.email as string),
-    // });
-
-    // if (!userDetails) {
-    //   return new Response('User not found!', { status: 404 });
-    // }
 
     // Parse and validate input
     const json = await req.json();
