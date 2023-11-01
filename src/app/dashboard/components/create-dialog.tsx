@@ -1,46 +1,74 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTrigger,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { LuLoader } from 'react-icons/lu';
+import { toast } from 'sonner';
 
 export function CreateDialog() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
-    console.log(event);
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    try {
+      event.preventDefault();
+      setLoading(true);
+
+      const data = new FormData(event.currentTarget);
+      const objFormData = Object.fromEntries(data.entries());
+      console.log(objFormData);
+
+      const res = await fetch('/api/collections', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objFormData),
+      });
+
+      console.log(res);
+
+      if (res.ok) {
+        // Redirect to unique collection page
+        setLoading(false);
+        toast.success('Successfully created collection!');
+        router.refresh();
+        setOpen(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error('Server Error! Please try again');
+    }
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>Create Collection</Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Create a new Collection</DialogTitle>
-          {/* <DialogDescription>
-            This action cannot be undone. This will permanently delete your account and remove your data from our
-            servers.
-          </DialogDescription> */}
         </DialogHeader>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="title">Collection Name</label>
-            <Input required id="title" placeholder="Enter name" />
+            <Label className="text-sm" htmlFor="title">
+              Collection Name
+            </Label>
+            <Input required name="title" id="title" placeholder="Enter name" />
           </div>
           <div>
-            <label htmlFor="description">Description</label>
+            <Label className="text-sm" htmlFor="description">
+              Description
+            </Label>
             <Textarea
+              name="description"
               required
               maxLength={255}
               rows={4}
@@ -49,16 +77,16 @@ export function CreateDialog() {
             />
           </div>
           <div className="flex flex-row justify-between">
-            <label htmlFor="private-state">Private</label>
-            <Switch defaultChecked={true} id="private-state" />
+            <Label className="text-sm" htmlFor="private-state">
+              Private
+            </Label>
+            <Switch name="private" defaultChecked={true} id="private-state" />
           </div>
-          <Button className="w-full" type="submit">
+          <Button className="w-full" type="submit" disabled={loading}>
+            {loading && <LuLoader className="animate-spin mr-2" />}
             Create Collection
           </Button>
         </form>
-        {/* <DialogFooter>
-          <Button className="w-full">Create Collection</Button>
-        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );

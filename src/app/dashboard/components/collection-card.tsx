@@ -2,15 +2,28 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 
-export function CollectionCard() {
+type Collection = {
+  collection: {
+    id: number;
+    title: string;
+    userId: string;
+    description: string;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    private: boolean | null;
+  };
+};
+
+export function CollectionCard({ collection }: Collection) {
   return (
     <Link href="#">
-      <Card>
+      <Card className="hover:shadow-lg">
         <CardHeader>
           <CardTitle className="flex flex-row justify-between">
-            The best songs in the world<Badge variant="secondary">Private</Badge>
+            {collection.title}
+            <Badge variant="secondary">{collection.private ? 'Private' : 'Public'}</Badge>
           </CardTitle>
-          <CardDescription>A collection of the best of the best songs in the world</CardDescription>
+          <CardDescription>{collection.description}</CardDescription>
         </CardHeader>
         {/* <CardContent></CardContent> */}
       </Card>
