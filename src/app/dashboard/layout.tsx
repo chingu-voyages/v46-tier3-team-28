@@ -11,11 +11,11 @@ export default async function Layout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-secondary">
       <nav>
         <Navigation session={session} />
       </nav>
-      <main>{children}</main>
-    </>
+      {children}
+    </div>
   );
 }

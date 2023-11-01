@@ -77,6 +77,7 @@ export const collections = mysqlTable('collection', {
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),
   title: varchar('title', { length: 255 }).notNull(),
+  description: varchar('description', { length: 255 }).notNull(),
   private: boolean('private').default(true),
 });
 
