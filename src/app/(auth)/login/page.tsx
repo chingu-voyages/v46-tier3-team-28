@@ -8,7 +8,7 @@ const LoginPage = () => {
   return (
     <>
       <Navbar />
-      <main className="w-full h-fit min-h-screen flex items-center justify-start overflow-y-auto flex-col py-10 bg-[#FAFAFA]">
+      <main className="w-full h-fit min-h-screen flex items-center justify-start overflow-y-auto flex-col py-10 bg-gray-200">
         <LoginForm />
       </main>
       <Footer />
