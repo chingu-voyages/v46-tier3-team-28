@@ -36,6 +36,7 @@ export default async function Page({ params }: PageParams) {
                 Add Item
               </Button>
             }
+            collectionId={params.collectionId}
           />
         </div>
       </div>

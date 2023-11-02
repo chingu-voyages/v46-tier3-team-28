@@ -6,7 +6,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 import { LuLoader } from 'react-icons/lu';
 import { toast } from 'sonner';
 
@@ -16,10 +17,25 @@ type MetaTags = {
   image: string | null;
 };
 
-export function ItemDialog({ trigger }: { trigger: React.ReactNode }) {
+type ItemDialogProps = {
+  trigger: React.ReactNode;
+  collectionId: string;
+};
+
+export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
+  const [open, setOpen] = useState(false);
   const [loadingMeta, setLoadingMeta] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [link, setLink] = useState('');
   const [metaTagsData, setMetaTagsData] = useState<MetaTags>();
+
+  // Reset State when closing modal
+  useEffect(() => {
+    if (open === false) {
+      setMetaTagsData(undefined);
+      setLink('');
+    }
+  }, [open]);
 
   const fetchMetaData = async () => {
     try {
@@ -36,22 +52,42 @@ export function ItemDialog({ trigger }: { trigger: React.ReactNode }) {
         setLoadingMeta(false);
         setMetaTagsData(metaTags);
       }
-      console.log(metaTags);
     } catch (error) {
       toast.error('Server Error. Please try again!');
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const parsedData = Object.fromEntries(data.entries());
+
+      const res = await fetch(`/api/items/${collectionId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(parsedData),
+      });
+
+      if (!res.ok) {
+        console.log('Error');
+      }
+      console.log(res);
+    } catch (error) {}
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="max-w-xl w-full p-0">
+      <DialogContent className={cn('p-0', metaTagsData ? 'max-w-4xl' : 'max-w-lg')}>
         {loadingMeta && (
           <div className="absolute bg-secondary w-full h-full opacity-60 grid place-content-center">
             <LuLoader className="animate-spin w-5 h-5" />
           </div>
         )}
-        <div className="">
+        <div>
           <div className="p-6 pb-4">
             <DialogHeader>
               <DialogTitle>Add new Item</DialogTitle>
@@ -67,28 +103,74 @@ export function ItemDialog({ trigger }: { trigger: React.ReactNode }) {
                   placeholder="https://www.your.cu/stom?link"
                 />
               </div>
-              <Button onClick={fetchMetaData}>Add</Button>
+              <Button onClick={fetchMetaData} className="px-6">
+                Add
+              </Button>
             </div>
           ) : (
-            <form className="p-6 pt-4 border-t space-y-6 bg-secondary">
-              <div>
-                <FormLabel>Title</FormLabel>
-                <Input required className="bg-background" value={metaTagsData.title} />
+            <div className="grid grid-cols-5">
+              <form onSubmit={handleSubmit} className="p-6 pt-4 col-span-3 border-t space-y-6">
+                <div>
+                  <FormLabel>Title</FormLabel>
+                  <Input
+                    required
+                    name="title"
+                    className="bg-background"
+                    value={metaTagsData.title}
+                    onChange={(e) => setMetaTagsData((state) => ({ ...state, title: e.target.value }) as MetaTags)}
+                  />
+                </div>
+                <div>
+                  <FormLabel>Description</FormLabel>
+                  <Textarea
+                    className="bg-background"
+                    name="description"
+                    rows={4}
+                    value={metaTagsData.description}
+                    onChange={(e) =>
+                      setMetaTagsData((state) => ({ ...state, description: e.target.value }) as MetaTags)
+                    }
+                  />
+                </div>
+                <div>
+                  <FormLabel>URL</FormLabel>
+                  <Input
+                    required
+                    name="url"
+                    className="bg-background"
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <FormLabel>Image URL</FormLabel>
+                  <Input
+                    className="bg-background"
+                    name="image"
+                    value={metaTagsData.image ?? ''}
+                    onChange={(e) => setMetaTagsData((state) => ({ ...state, image: e.target.value }) as MetaTags)}
+                  />
+                </div>
+                <Button className="w-full">Create Item</Button>
+              </form>
+              <div className="col-span-2 border-l border-t bg-secondary flex items-center">
+                <div className="m-2 border rounded-md">
+                  <div>
+                    <img
+                      width={335}
+                      height={185}
+                      className="rounded-t-md"
+                      onError={(e) => (e.currentTarget.src = '/default-image.jpeg')}
+                      alt="Image preview"
+                      src={metaTagsData.image ?? ''}
+                    />
+                  </div>
+                  <div className="border-t p-2 bg-background rounded-b-md text-center">
+                    <small className="font-medium">Image Preview</small>
+                  </div>
+                </div>
               </div>
-              <div>
-                <FormLabel>Description</FormLabel>
-                <Textarea className="bg-background" rows={4} value={metaTagsData.description} />
-              </div>
-              <div>
-                <FormLabel>URL</FormLabel>
-                <Input required className="bg-background" value={link} />
-              </div>
-              <div>
-                <FormLabel>Image URL</FormLabel>
-                <Input className="bg-background" value={metaTagsData.image ?? ''} />
-              </div>
-              <Button className="w-full">Create Item</Button>
-            </form>
+            </div>
           )}
         </div>
       </DialogContent>
