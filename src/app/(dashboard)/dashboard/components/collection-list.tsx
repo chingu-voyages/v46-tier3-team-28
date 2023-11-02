@@ -1,7 +1,8 @@
-import { db } from '@/db';
-import { CollectionCard } from './collection-card';
-import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { db } from '@/db';
+import { getServerSession } from 'next-auth';
+import { CollectionCard } from './collection-card';
+import { CreateDialog } from './create-dialog';
 
 async function getCollections() {
   const sesssion = await getServerSession(authOptions);
@@ -16,9 +17,20 @@ export async function CollectionList() {
 
   return (
     <section className="w-full grid grid-cols-3 gap-6 max-w-screen-xl mx-auto my-10">
-      {collections.map((collection) => (
-        <CollectionCard collection={collection} key={collection.id} />
-      ))}
+      {collections.length ? (
+        collections.map((collection) => <CollectionCard collection={collection} key={collection.id} />)
+      ) : (
+        <div className="col-span-3 max-w-2xl rounded-md bg-white border w-full mx-auto p-14 flex flex-col justify-center items-center">
+          <h2 className="text-xl font-semibold text-center">No Collections found</h2>
+          <img
+            width={380}
+            height={380}
+            src="https://illustrations.popsy.co/blue/working-vacation.svg"
+            alt="vacation girl illustration"
+          />
+          <CreateDialog />
+        </div>
+      )}
     </section>
   );
 }

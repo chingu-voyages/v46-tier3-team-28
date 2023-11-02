@@ -16,7 +16,7 @@ type Collection = {
 
 export function CollectionCard({ collection }: Collection) {
   return (
-    <Link href="#">
+    <Link href={`/${collection.id}`}>
       <Card className="hover:shadow-lg">
         <CardHeader>
           <CardTitle className="flex flex-row justify-between">
