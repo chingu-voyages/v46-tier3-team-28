@@ -20,10 +20,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
-
         <SessionProvider session={session}>
           {children}
-          <Toaster position="bottom-center" />
+          <Toaster richColors position="bottom-center" />
           <TailwindIndicator />
         </SessionProvider>
       </body>

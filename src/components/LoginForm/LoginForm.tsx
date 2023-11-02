@@ -1,8 +1,10 @@
-"use client";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import React, { useState } from "react";
-import OAuthButtons from "@/components/OAuthButtons/OAuthButtons";
+'use client';
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
+import { redirect } from 'next/navigation';
+import { toast } from 'sonner';
 
 const LoginForm = () => {
   function validateLogin(e: React.FormEvent<HTMLFormElement>) {
@@ -11,7 +13,15 @@ const LoginForm = () => {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    signIn('credentials', { email, password, callbackUrl: '/dashboard' });
+    signIn('credentials', { email, password, redirect: false }).then((response) => {
+      if (response?.ok) {
+        redirect('/dashboard');
+      }
+
+      if (response?.error) {
+        toast.error('Incorrect email or password');
+      }
+    });
   }
 
   const [email, setEmail] = useState('');
