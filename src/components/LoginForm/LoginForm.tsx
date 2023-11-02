@@ -28,7 +28,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <form onSubmit={validateLogin} className="h-fit w-fit bg-transparent">
+    <form onSubmit={validateLogin} className="h-fit w-fit bg-transparent dark:bg-black">
       <div className="w-full h-fit flex flex-col justify-center items-center pb-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="62" fill="none">
           <path
@@ -84,10 +84,10 @@ const LoginForm = () => {
             type="submit"
             value="Login"
           />
-          <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-            <div className="h-[1px] w-full bg-black flex self-center"></div>
-            <h5 className="text-black w-full text-center col-span-2">OR CONTINUE WITH</h5>
-            <div className="h-[1px] w-full bg-black flex self-center"></div>
+          <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 place-items-center">
+            <div className="h-[1px] w-2/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
+            <h5 className="text-[#737373] w-full text-center col-span-2">OR CONTINUE WITH</h5>
+            <div className="h-[1px] w-1/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
           </fieldset>
           <OAuthButtons />
           <p className="text-[#737373] text-center">

@@ -3,16 +3,16 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import LandingPage from '@/components/LandingPage/LandingPage';
 import Navbar from '@/components/Navbar/Navbar';
-import Footer from "@/components/Footer/Footer";
+import Footer from '@/components/Footer/Footer';
 
 export default function Home() {
   const { data: session } = useSession();
 
   return (
     <div>
-      <Navbar /> 
-      <main className="home-img">
-        {session ? (
+      <Navbar />
+      <main className="home-img overflow-x-hidden">
+        {/* {session ? (
           <div>
             <span>
               <h2>Welcome! {session?.user?.name ?? session?.user?.email ?? 'friend'}</h2>
@@ -24,7 +24,8 @@ export default function Home() {
         )}
         <div>
           <LandingPage />
-        </div>
+        </div> */}
+        <LandingPage />
       </main>
       <Footer />
     </div>
