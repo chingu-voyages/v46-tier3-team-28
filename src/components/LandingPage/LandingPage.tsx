@@ -14,7 +14,7 @@ const LandingPage = () => {
       />
       <div className="h-screen w-screen absolute inset-0 bg-gradient-to-r from-[#2d2d2d] to-[#0000001A]" />
       <div className="z-[1] h-fit max-w-5xl flex flex-col gap-5 px-[5%]">
-        <h1 className="text-center font-extrabold text-3xl md:text-6xl text-white tracking-wider leading-tight">
+        <h1 className="text-center font-extrabold text-3xl md:text-5xl text-white tracking-wider leading-tight">
           Discover the easiest way to save and organize your <span className="text-[#633CFF]">favorite</span> URLs with
           our intuitive bookmarking app
         </h1>

@@ -22,7 +22,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={inter.className}>
         <SessionProvider session={session}>
           {children}
-          <Toaster richColors position="bottom-center" />
+          <Toaster richColors position="top-right" />
           <TailwindIndicator />
         </SessionProvider>
       </body>

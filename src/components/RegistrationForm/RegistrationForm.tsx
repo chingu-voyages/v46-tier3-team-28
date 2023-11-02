@@ -1,7 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import OAuthButtons from "@/components/OAuthButtons/OAuthButtons";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
+import { toast } from 'sonner';
 
 const RegistrationForm = () => {
   const [name, setName] = useState('');
@@ -9,11 +10,21 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordErrorView, setPasswordErrorView] = useState('hidden');
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function registerUser(e: any) {
     e.preventDefault();
 
+    if (password.length < 8) {
+      setErrorMessage('Password must contain at least 8 characters.');
+      setPasswordErrorView('flex');
+      setTimeout(() => {
+        setPasswordErrorView('hidden');
+      }, 5000);
+    }
+
     if (password !== confirmPassword) {
+      setErrorMessage("Passwords don't match!");
       setPasswordErrorView('flex');
       setTimeout(() => {
         setPasswordErrorView('hidden');
@@ -21,7 +32,7 @@ const RegistrationForm = () => {
       return;
     }
 
-    const register = await fetch('http://localhost:3000/api/auth/register', {
+    const response = await fetch('http://localhost:3000/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -32,11 +43,16 @@ const RegistrationForm = () => {
         email,
       }),
     });
-
-    setName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    console.log(response);
+    if (response.ok) {
+      toast.success('You are now registered!');
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    } else {
+      toast.error('Invalid credentials!');
+    }
   }
 
   return (
@@ -111,7 +127,7 @@ const RegistrationForm = () => {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
-            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>Passwords don't match!</p>
+            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>{errorMessage}</p>
           </fieldset>
           <fieldset className="flex flex-col gap-2">
             <label className="text-xs text-[#333333]">Confirm Password</label>
@@ -128,11 +144,9 @@ const RegistrationForm = () => {
                 (e.target as HTMLInputElement).setCustomValidity('');
               }}
             />
-            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>Passwords don't match!</p>
+            <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>{errorMessage}</p>
           </fieldset>
-          <p className="w-full text-left text-xs cursor-pointer text-[#737373]">
-            Password must contain at least 8 characters.
-          </p>
+          <p className="w-full text-left text-xs text-[#737373]">Password must contain at least 8 characters.</p>
           <input
             className="bg-[#633CFF] text-white w-full flex flex-col justify-center items-center font-medium py-3 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
             type="submit"
