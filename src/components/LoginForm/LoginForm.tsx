@@ -16,8 +16,9 @@ const LoginForm = () => {
     signIn('credentials', { email, password, redirect: false }).then((response) => {
       if (response?.ok) {
         toast.success('Successful login!');
+        window.location.href = '/dashboard';
 
-        redirect('/dashboard');
+        // redirect('/dashboard');
       }
 
       if (response?.error) {
