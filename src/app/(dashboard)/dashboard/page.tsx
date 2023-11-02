@@ -1,11 +1,9 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/authOptions';
+import { authOptions } from '../../api/auth/[...nextauth]/authOptions';
 import { CollectionList } from './components/collection-list';
 import { CreateDialog } from './components/create-dialog';
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);
-
   return (
     <main className="w-full">
       <div className="border-b bg-background">

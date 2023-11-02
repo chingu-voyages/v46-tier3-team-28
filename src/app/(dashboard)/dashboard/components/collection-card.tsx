@@ -21,7 +21,13 @@ export function CollectionCard({ collection }: Collection) {
         <CardHeader>
           <CardTitle className="flex flex-row justify-between">
             {collection.title}
-            <Badge variant="secondary">{collection.private ? 'Private' : 'Public'}</Badge>
+            {collection.private ? (
+              <Badge variant="secondary">Private</Badge>
+            ) : (
+              <Badge variant="outline" className="text-background bg-foreground">
+                Public
+              </Badge>
+            )}
           </CardTitle>
           <CardDescription>{collection.description}</CardDescription>
         </CardHeader>
