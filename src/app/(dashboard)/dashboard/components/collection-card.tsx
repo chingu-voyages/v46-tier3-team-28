@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 type Collection = {
   collection: {
-    id: number;
+    id: string;
     title: string;
     userId: string;
     description: string;
