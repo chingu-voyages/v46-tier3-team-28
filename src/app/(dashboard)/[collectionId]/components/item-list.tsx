@@ -1,8 +1,7 @@
-import { Card } from '@/components/ui/card';
-import Link from 'next/link';
-import { ItemCard } from './item-card';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { LuPlus } from 'react-icons/lu';
+import { ItemCard } from './item-card';
 import { ItemDialog } from './item-dialog';
 
 type ItemListProps = {
@@ -26,12 +25,7 @@ export function ItemList({ items, collectionId }: ItemListProps) {
       ) : (
         <div className="col-span-3 max-w-2xl rounded-md bg-white border w-full mx-auto p-14 flex flex-col justify-center items-center">
           <h2 className="text-xl font-semibold text-center">No items in collection</h2>
-          <img
-            width={380}
-            height={380}
-            src="https://illustrations.popsy.co/blue/working-vacation.svg"
-            alt="vacation girl illustration"
-          />
+          <Image width={380} height={380} src="/working-vacation.svg" alt="vacation girl illustration" />
           <ItemDialog
             trigger={
               <Button>
