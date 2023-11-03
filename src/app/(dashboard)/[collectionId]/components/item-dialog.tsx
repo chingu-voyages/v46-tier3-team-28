@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useReducer, useState } from 'react';
 import { LuLoader } from 'react-icons/lu';
 import { toast } from 'sonner';
 
@@ -22,10 +23,7 @@ type ItemDialogProps = {
   collectionId: string;
 };
 
-// TODO: Add zod validator to form
-// Add loading state when clicking create item
-// Add toast
-// Add error handling for form submission
+// TODO: Add zod validator to form (useful for url input)
 
 export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
   const [open, setOpen] = useState(false);
@@ -33,6 +31,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState('');
   const [metaTagsData, setMetaTagsData] = useState<MetaTags>();
+  const router = useRouter();
 
   // Reset State when closing modal
   useEffect(() => {
@@ -83,6 +82,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
 
       setOpen(false);
       setLoading(false);
+      router.refresh();
       toast.success('Item added successfully!');
       console.log(res);
     } catch (error) {
@@ -163,7 +163,10 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
                     onChange={(e) => setMetaTagsData((state) => ({ ...state, image: e.target.value }) as MetaTags)}
                   />
                 </div>
-                <Button className="w-full">Create Item</Button>
+                <Button className="w-full" disabled={loading}>
+                  {loading && <LuLoader className="animate-spin mr-2" />}
+                  Create Item
+                </Button>
               </form>
               <div className="col-span-2 border-l border-t bg-secondary flex items-center">
                 <div className="m-2 border rounded-md">
