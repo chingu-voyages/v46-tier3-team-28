@@ -12,7 +12,7 @@ type PageParams = {
 
 async function getCollectionItemsAndInfo(collectionId: string) {
   const collection = await db.query.collections.findFirst({
-    where: (collections, { eq }) => eq(collections.id, Number(collectionId)),
+    where: (collections, { eq }) => eq(collections.id, collectionId),
   });
   const items = await db.query.items.findMany({
     where: (items, { eq }) => eq(items.collectionId, collectionId),
@@ -40,7 +40,7 @@ export default async function Page({ params }: PageParams) {
           />
         </div>
       </div>
-      <ItemList items={items} />
+      <ItemList items={items} collectionId={params.collectionId} />
     </main>
   );
 }

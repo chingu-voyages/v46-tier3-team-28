@@ -5,10 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LuLoader } from 'react-icons/lu';
 import { toast } from 'sonner';
+import { v4 as uuidv4 } from 'uuid';
 
 export function CreateDialog() {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,8 @@ export function CreateDialog() {
       const data = new FormData(event.currentTarget);
       const objFormData = Object.fromEntries(data.entries());
 
+      objFormData.id = uuidv4();
+
       const res = await fetch('/api/collections', {
         method: 'POST',
         headers: {
@@ -33,10 +36,8 @@ export function CreateDialog() {
 
       if (res.ok) {
         // Redirect to unique collection page
-        setLoading(false);
         toast.success('Successfully created collection!');
-        router.refresh();
-        setOpen(false);
+        router.push(`/${objFormData.id}`);
       } else {
         setLoading(false);
         toast.error('Cannot create Collection. Please try again!');

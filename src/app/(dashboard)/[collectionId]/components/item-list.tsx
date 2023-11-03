@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ItemCard } from './item-card';
 import { Button } from '@/components/ui/button';
 import { LuPlus } from 'react-icons/lu';
+import { ItemDialog } from './item-dialog';
 
 type ItemListProps = {
   items: {
@@ -14,9 +15,10 @@ type ItemListProps = {
     url: string | null;
     note: string | null;
   }[];
+  collectionId: string;
 };
 
-export function ItemList({ items }: ItemListProps) {
+export function ItemList({ items, collectionId }: ItemListProps) {
   return (
     <section className="w-full grid grid-cols-3 gap-6 max-w-screen-xl mx-auto my-10">
       {items.length ? (
@@ -30,10 +32,15 @@ export function ItemList({ items }: ItemListProps) {
             src="https://illustrations.popsy.co/blue/working-vacation.svg"
             alt="vacation girl illustration"
           />
-          <Button>
-            <LuPlus className="mr-2" />
-            Add Item
-          </Button>
+          <ItemDialog
+            trigger={
+              <Button>
+                <LuPlus className="mr-2" />
+                Add Item
+              </Button>
+            }
+            collectionId={collectionId}
+          />
         </div>
       )}
     </section>

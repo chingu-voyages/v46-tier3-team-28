@@ -22,6 +22,11 @@ type ItemDialogProps = {
   collectionId: string;
 };
 
+// TODO: Add zod validator to form
+// Add loading state when clicking create item
+// Add toast
+// Add error handling for form submission
+
 export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
   const [open, setOpen] = useState(false);
   const [loadingMeta, setLoadingMeta] = useState(false);
@@ -60,6 +65,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const data = new FormData(e.currentTarget);
       const parsedData = Object.fromEntries(data.entries());
 
@@ -72,10 +78,16 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
       });
 
       if (!res.ok) {
-        console.log('Error');
+        toast.error('Server error! Please try again.');
       }
+
+      setOpen(false);
+      setLoading(false);
+      toast.success('Item added successfully!');
       console.log(res);
-    } catch (error) {}
+    } catch (error) {
+      toast.error('Server error! Please try again.');
+    }
   };
 
   return (
