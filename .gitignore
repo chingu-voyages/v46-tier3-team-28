@@ -36,7 +36,7 @@ Temporary Items
 
 ### NextJS ###
 # dependencies
-# pnpm-lock.yaml
+pnpm-lock.yaml
 /node_modules
 /.pnp
 .pnp.js
