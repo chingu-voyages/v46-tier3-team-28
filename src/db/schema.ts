@@ -72,7 +72,7 @@ export const userRelations = relations(users, ({ many }) => ({
 }));
 
 export const collections = mysqlTable('collection', {
-  id: serial('id').primaryKey(),
+  id: varchar('id', { length: 255 }).primaryKey(),
   userId: varchar('userId', { length: 255 }).notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow(),

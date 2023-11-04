@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 type Collection = {
   collection: {
-    id: number;
+    id: string;
     title: string;
     userId: string;
     description: string;
@@ -16,7 +16,7 @@ type Collection = {
 
 export function CollectionCard({ collection }: Collection) {
   return (
-    <Link href="#">
+    <Link href={`/${collection.id}`}>
       <Card className="hover:shadow-lg">
         <CardHeader>
           <CardTitle className="flex flex-row justify-between">

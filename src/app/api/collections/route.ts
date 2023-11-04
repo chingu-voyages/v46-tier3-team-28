@@ -41,6 +41,7 @@ export async function POST(req: Request) {
 
     // Create new collection entry in db linked to user
     const collection = await db.insert(collections).values({
+      id: payload.id,
       title: payload.title,
       userId: user.id,
       description: payload.description,

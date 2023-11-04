@@ -1,5 +1,3 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../api/auth/[...nextauth]/authOptions';
 import { CollectionList } from './components/collection-list';
 import { CreateDialog } from './components/create-dialog';
 

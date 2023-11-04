@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
 
   // Check if url is valid
   if (!url || !isValidUrl(url)) {
-    return new Response('Invalid URL', { status: 400 });
+    return new Response(JSON.stringify({ error: 'Invalid URL' }), { status: 400 });
   }
 
   const metaTags = await getMetaTags(url);
