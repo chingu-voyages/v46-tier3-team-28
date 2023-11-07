@@ -5,7 +5,7 @@ import { collectionSchema } from '@/lib/validators/collections';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { LuCheck, LuChevronsUpDown, LuLoader2 } from 'react-icons/lu';
+import { LuCheck, LuChevronsUpDown, LuFolderLock, LuFolderOpen, LuLoader2 } from 'react-icons/lu';
 import { z } from 'zod';
 import { buttonVariants } from '../ui/button';
 import {
@@ -24,12 +24,12 @@ type Collection = z.infer<typeof collectionSchema>;
 export function CollectionSelect() {
   const [collections, setCollections] = useState<Collection[]>();
   const pathname = usePathname();
-  const [collectionName, setCollectionName] = useState<string>();
+  const [collectionName, setCollectionName] = useState<string>('Loading...');
 
   useEffect(() => {
     const coll = collections?.filter((collection) => collection.id === pathname.slice(1));
     if (coll?.length) setCollectionName(coll[0].title);
-  }, [pathname]);
+  }, [pathname, collections]);
 
   useEffect(() => {
     async function getCollectionList() {
@@ -52,7 +52,7 @@ export function CollectionSelect() {
           <LuChevronsUpDown className="stroke-muted-foreground" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="sm:w-48">
+      <DropdownMenuContent className="sm:w-52">
         <DropdownMenuLabel>Collections</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="max-h-52 overflow-y-scroll">
@@ -67,7 +67,10 @@ export function CollectionSelect() {
                         'bg-primary text-background hover:text-background hover:bg-primary focus:text-background focus:bg-primary',
                     )}
                   >
-                    {collection.title}
+                    <div className="flex items-center gap-4">
+                      {collection.private ? <LuFolderLock /> : <LuFolderOpen />}
+                      {collection.title}
+                    </div>
                     {pathname.slice(1) === collection.id && <LuCheck className="ml-2" />}
                   </DropdownMenuItem>
                 </Link>
