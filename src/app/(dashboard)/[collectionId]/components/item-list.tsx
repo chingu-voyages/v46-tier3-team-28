@@ -19,7 +19,7 @@ type ItemListProps = {
 
 export function ItemList({ items, collectionId }: ItemListProps) {
   return (
-    <section className="w-full grid grid-cols-3 gap-6 max-w-screen-xl mx-auto my-10">
+    <section className="w-full grid grid-cols-3 gap-6 max-w-screen-xl mx-auto py-10">
       {items.length ? (
         items.map((item) => <ItemCard item={item} key={item.id} />)
       ) : (

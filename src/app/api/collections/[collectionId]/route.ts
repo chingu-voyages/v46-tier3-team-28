@@ -29,7 +29,7 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
         private: payload.private,
         description: payload.description,
       })
-      .where(eq(collections.id, parseInt(params.collectionId)));
+      .where(eq(collections.id, params.collectionId));
 
     return new Response(null, { status: 200 });
   } catch (error) {
@@ -52,7 +52,7 @@ export async function DELETE(req: Request, context: z.infer<typeof routeContextS
     }
 
     // Delete collection
-    await db.delete(collections).where(eq(collections.id, parseInt(params.collectionId)));
+    await db.delete(collections).where(eq(collections.id, params.collectionId));
 
     return new Response(null, { status: 204 });
   } catch (error) {
