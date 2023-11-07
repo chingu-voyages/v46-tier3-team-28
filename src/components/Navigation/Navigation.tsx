@@ -1,10 +1,10 @@
 'use client';
 import { Session } from 'next-auth';
-import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { nameToInitials } from '@/lib/utils';
 import { UserOptions } from './UserOptions';
+import Divider from '../divider';
+import { MainLogo } from '../icons';
+import { CollectionSelect } from './CollectionSelect';
 
 export default function Navigation({ session }: { session: Session }) {
   return (
@@ -20,8 +20,12 @@ export default function Navigation({ session }: { session: Session }) {
         ) : (
           <button onClick={() => signIn()}>Sign in</button>
         )} */}
-        <div>
-          <Link href="/dashboard">PagePocket</Link>
+        <div className="flex items-center">
+          <Link className="font-semibold" href="/dashboard">
+            <MainLogo />
+          </Link>
+          <Divider className="h-8 w-8 text-border sm:ml-4" />
+          <CollectionSelect />
         </div>
         <UserOptions session={session} />
       </div>
