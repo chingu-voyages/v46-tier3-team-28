@@ -16,6 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import { ScrollAreaCorner } from '@radix-ui/react-scroll-area';
+import { ScrollArea } from '../ui/scroll-area';
 
 type Collection = z.infer<typeof collectionSchema>;
 
@@ -53,32 +55,34 @@ export function CollectionSelect() {
       <DropdownMenuContent className="sm:w-48">
         <DropdownMenuLabel>Collections</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {collections ? (
-          collections.length ? (
-            collections.map((collection) => (
-              <Link key={collection.id} href={`/${collection.id}`}>
-                <DropdownMenuItem
-                  className={cn(
-                    'flex items-center justify-between cursor-pointer',
-                    pathname.slice(1) === collection.id &&
-                      'bg-primary text-background hover:text-background hover:bg-primary focus:text-background focus:bg-primary',
-                  )}
-                >
-                  {collection.title}
-                  {pathname.slice(1) === collection.id && <LuCheck className="ml-2" />}
-                </DropdownMenuItem>
-              </Link>
-            ))
+        <div className="max-h-52 overflow-y-scroll">
+          {collections ? (
+            collections.length ? (
+              collections.map((collection) => (
+                <Link key={collection.id} href={`/${collection.id}`}>
+                  <DropdownMenuItem
+                    className={cn(
+                      'flex items-center justify-between cursor-pointer',
+                      pathname.slice(1) === collection.id &&
+                        'bg-primary text-background hover:text-background hover:bg-primary focus:text-background focus:bg-primary',
+                    )}
+                  >
+                    {collection.title}
+                    {pathname.slice(1) === collection.id && <LuCheck className="ml-2" />}
+                  </DropdownMenuItem>
+                </Link>
+              ))
+            ) : (
+              <div>
+                <small className="px-2 py-1.5">No collections</small>
+              </div>
+            )
           ) : (
-            <div>
-              <small className="px-2 py-1.5">No collections</small>
+            <div className="w-full h-10 grid place-content-center">
+              <LuLoader2 className="animate-spin w-4 h-4" />
             </div>
-          )
-        ) : (
-          <div className="w-full h-10 grid place-content-center">
-            <LuLoader2 className="animate-spin w-4 h-4" />
-          </div>
-        )}
+          )}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
