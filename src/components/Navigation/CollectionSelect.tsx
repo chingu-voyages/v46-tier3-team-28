@@ -3,8 +3,9 @@
 import { cn } from '@/lib/utils';
 import { collectionSchema } from '@/lib/validators/collections';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { LuCheck, LuChevronsUpDown } from 'react-icons/lu';
+import { LuCheck, LuChevronsUpDown, LuLoader2 } from 'react-icons/lu';
 import { z } from 'zod';
 import { buttonVariants } from '../ui/button';
 import {
@@ -15,7 +16,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { usePathname } from 'next/navigation';
 
 type Collection = z.infer<typeof collectionSchema>;
 
@@ -53,7 +53,7 @@ export function CollectionSelect() {
       <DropdownMenuContent className="sm:w-48">
         <DropdownMenuLabel>Collections</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {collections &&
+        {collections ? (
           collections.map((collection) => (
             <Link key={collection.id} href={`/${collection.id}`}>
               <DropdownMenuItem
@@ -67,7 +67,12 @@ export function CollectionSelect() {
                 {pathname.slice(1) === collection.id && <LuCheck className="ml-2" />}
               </DropdownMenuItem>
             </Link>
-          ))}
+          ))
+        ) : (
+          <div className="w-full h-10 grid place-content-center">
+            <LuLoader2 className="animate-spin w-4 h-4" />
+          </div>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
