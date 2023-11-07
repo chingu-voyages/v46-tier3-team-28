@@ -1,8 +1,14 @@
+"use client";
 import React from 'react'
+import {ContactCard} from "@/components/contact-card/ContactCard";
 
 function page() {
   return (
-    <div>page</div>
+    <div>Contacts page
+        <ContactCard />
+
+    </div>
+
   )
 }
 
