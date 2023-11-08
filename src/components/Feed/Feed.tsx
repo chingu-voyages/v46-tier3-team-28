@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageCard from '@/components/PageCard/PageCard';
+import { Button} from "@/components/button/Button";
 
 const Feed = () => {
   const [inputUrl, setInputUrl] = useState('');
@@ -27,12 +28,7 @@ const Feed = () => {
           value={inputUrl}
           className="w-6/12"
         />
-        <button
-          className="bg-[#633CFF] text-white flex flex-col justify-center items-center font-medium py-3 px-3 mt-6 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
-          onClick={handleCreatePost}
-        >
-          Create Post
-        </button>
+        <Button text="Create Post" onClick={handleCreatePost} />
       </form>
 
       {isPopupOpen && (
