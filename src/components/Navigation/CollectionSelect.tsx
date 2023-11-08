@@ -33,7 +33,6 @@ export function CollectionSelect() {
     } else {
       setCollectionName(pathname.slice(1));
     }
-    setFetching(false);
   }, [pathname, collections]);
 
   useEffect(() => {
@@ -43,10 +42,11 @@ export function CollectionSelect() {
 
       const data = (await res.json()) as Collection[];
       setCollections(data);
+      setFetching(false);
     }
 
     getCollectionList();
-  }, []);
+  }, [pathname]);
 
   return (
     <DropdownMenu>
