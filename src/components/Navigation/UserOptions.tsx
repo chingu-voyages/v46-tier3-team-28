@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 export function UserOptions({ session }: { session: Session }) {
   return (
@@ -27,11 +28,13 @@ export function UserOptions({ session }: { session: Session }) {
           <p className="truncate text-sm font-normal text-muted-foreground">{session.user.email}</p>
         </DropdownMenuLabel>
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer">
-            <div className="flex items-center space-x-2">
-              <LuSettings /> <span>Settings</span>
-            </div>
-          </DropdownMenuItem>
+          <Link href="/settings">
+            <DropdownMenuItem className="cursor-pointer">
+              <div className="flex items-center space-x-2">
+                <LuSettings /> <span>Settings</span>
+              </div>
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem className="cursor-pointer" onClick={() => signOut({ callbackUrl: '/' })}>
             <div className="flex items-center space-x-2">
               <LuLogOut /> <span>Logout</span>
