@@ -47,7 +47,7 @@ Make sure you have the following installed in your system:
 
 ## 🎨 Demo
 
-Check out the website: [DEMO](https://v46-tier3-team-28-8mwx.vercel.app/)
+Check out the website: [DEMO]([https://v46-tier3-team-28-8mwx.vercel.app/](https://v46-tier3-team-28-ecru.vercel.app/))
 
 ## 👩🏽‍💻 Contributing
 

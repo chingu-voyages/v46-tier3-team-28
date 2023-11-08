@@ -2,14 +2,14 @@ import { isValidUrl } from '@/lib/utils';
 import { NextRequest } from 'next/server';
 import { parse } from 'node-html-parser';
 
-export const runtime = 'edge';
+export const runtime = "edge"
 
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get('url');
 
   // Check if url is valid
   if (!url || !isValidUrl(url)) {
-    return new Response('Invalid URL', { status: 400 });
+    return new Response(JSON.stringify({ error: 'Invalid URL' }), { status: 400 });
   }
 
   const metaTags = await getMetaTags(url);

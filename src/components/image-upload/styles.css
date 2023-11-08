@@ -1,0 +1,130 @@
+.form-upload {
+    display: grid;
+    align-items: center;
+    width: 80vw;
+    min-width: 360px;
+}
+
+.upload-zone_dragover {
+    display: grid;
+    height: 50vh;
+    min-height: 360px;
+    margin-bottom: 25px;
+    border: 1px solid currentColor;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 18px;
+    place-content: center;
+    text-align: center;
+    background: grey;
+}
+
+.upload-zone_dragover svg {
+    width: 10vw;
+    margin: auto;
+    pointer-events: none;
+}
+
+.form-upload__hint {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.upload-zone_dragover._active {
+    color: #c56fff;
+    background-color: #c56fff77;
+}
+
+.form-upload__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-upload__title {
+    margin-right: 55px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.form-upload__input {
+    font-family: inherit;
+    font-size: 18px;
+}
+
+.form-upload__input::file-selector-button {
+    margin-right: 30px;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 15px;
+    font-family: inherit;
+    font-weight: inherit;
+    transition: background-color 0.2s linear;
+    cursor: pointer;
+}
+
+.form-upload__input::file-selector-button:hover {
+    background-color: #c56fff;
+}
+
+.form-upload__container {
+    width: 360px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.upload-zone_gragover {
+    background-color: #593273;
+}
+
+.upload-hint,
+.upload-status {
+    width: 75%;
+}
+
+.upload-hint {
+    display: none;
+}
+
+.upload-hint_visible {
+    display: block;
+    pointer-events: none;
+}
+
+.upload-loader {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.upload-loader_visible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #593273;
+}
+
+.upload-loader__image {
+    width: 150px;
+    height: 150px;
+}
+
+@media (max-width: 768px) {
+    .upload-zone {
+        padding: 55px 30px;
+    }
+
+    .form-upload__title {
+        display: block;
+        margin-right: 0;
+    }
+
+    .form-upload__input::file-selector-button {
+        min-width: initial;
+        margin-right: 10px;
+    }
+}

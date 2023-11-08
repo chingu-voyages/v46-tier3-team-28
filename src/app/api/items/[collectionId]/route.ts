@@ -6,8 +6,6 @@ import { getServerSession } from 'next-auth';
 import z from 'zod';
 import { authOptions } from '../../auth/[...nextauth]/authOptions';
 
-// TODO: add delete and patch endpoint for items
-
 export async function GET(req: Request, context: z.infer<typeof routeContextSchema>) {
   try {
     const session = await getServerSession(authOptions);
