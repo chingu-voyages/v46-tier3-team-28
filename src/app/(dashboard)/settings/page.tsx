@@ -1,20 +1,13 @@
-'use client';
+"use client";
 import React from 'react'
-import {Button} from "@/components/button/Button";
-import Link from "next/link";
+import {ContactCard} from "@/components/contact-card/ContactCard";
 
 function page() {
   const handleUpdateProfile = () => {};
 
   return (
-    <div>
-      <p>Avatar</p>
-      <p>Name</p>
-      <p>Surname</p>
-
-      <Link href={"/profile/settings/"}>
-      <Button text="Update profile" onClick={handleUpdateProfile} />
-      </Link>
+    <div>Contacts page
+        <ContactCard />
     </div>
   )
 }

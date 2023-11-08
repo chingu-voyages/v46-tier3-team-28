@@ -2,7 +2,7 @@ import { isValidUrl } from '@/lib/utils';
 import { NextRequest } from 'next/server';
 import { parse } from 'node-html-parser';
 
-export const runtime = 'edge';
+export const runtime = "edge"
 
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get('url');
