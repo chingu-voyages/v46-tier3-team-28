@@ -2,7 +2,7 @@
 import React from 'react'
 import {ContactCard} from "@/components/contact-card/ContactCard";
 
-function page() {
+function Page() {
     return (
         <div className={"flex-row"}>
             <ContactCard
@@ -33,4 +33,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
