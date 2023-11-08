@@ -16,23 +16,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { ScrollAreaCorner } from '@radix-ui/react-scroll-area';
-import { ScrollArea } from '../ui/scroll-area';
+import { Skeleton } from '../ui/skeleton';
 
 type Collection = z.infer<typeof collectionSchema>;
 
 export function CollectionSelect() {
   const [collections, setCollections] = useState<Collection[]>();
   const pathname = usePathname();
-  const [collectionName, setCollectionName] = useState<string>('Loading...');
+  const [collectionName, setCollectionName] = useState<string>();
+  const [fetching, setFetching] = useState<boolean>(false);
 
   useEffect(() => {
     const coll = collections?.filter((collection) => collection.id === pathname.slice(1));
-    if (coll?.length) setCollectionName(coll[0].title);
+    if (coll?.length) {
+      setCollectionName(coll[0].title);
+    } else {
+      setCollectionName(pathname.slice(1));
+    }
+    setFetching(false);
   }, [pathname, collections]);
 
   useEffect(() => {
     async function getCollectionList() {
+      setFetching(true);
       const res = await fetch('/api/collections');
 
       const data = (await res.json()) as Collection[];
@@ -45,12 +51,16 @@ export function CollectionSelect() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <div className={cn(buttonVariants({ variant: 'ghost' }), 'flex h-11 items-center space-x-3')}>
-          <span className="truncate max-w-[100px] text-sm font-medium sm:max-w-[200px]">
-            {pathname.slice(1) === 'dashboard' ? 'Dashboard' : `${collectionName}`}
-          </span>
-          <LuChevronsUpDown className="stroke-muted-foreground" />
-        </div>
+        {fetching || !collectionName ? (
+          <Skeleton className="h-11 w-48" />
+        ) : (
+          <div className={cn(buttonVariants({ variant: 'ghost' }), 'flex h-11 items-center space-x-3')}>
+            <span className="truncate max-w-[100px] text-sm font-medium sm:max-w-[200px] capitalize">
+              {collectionName}
+            </span>
+            <LuChevronsUpDown className="stroke-muted-foreground" />
+          </div>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="sm:w-52">
         <DropdownMenuLabel>Collections</DropdownMenuLabel>
