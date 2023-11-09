@@ -87,7 +87,7 @@ export function CollectionMoreButton({ collection }: Collection) {
     <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={cn('h-auto px-2 z-10')}>
-          <LuMoreHorizontal />
+          <LuMoreHorizontal className="w-5 h-5" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -116,7 +116,7 @@ export function CollectionMoreButton({ collection }: Collection) {
               onSelect={(e) => e.preventDefault()}
               className="cursor-pointer text-destructive hover:bg-destructive hover:text-background focus:bg-destructive focus:text-background"
             >
-              <LuTrash2 className="mr-2 w-6 h-6" /> Delete
+              <LuTrash2 className="mr-2" /> Delete
             </DropdownMenuItem>
           </AlertDialogTrigger>
           <AlertDialogContent>
