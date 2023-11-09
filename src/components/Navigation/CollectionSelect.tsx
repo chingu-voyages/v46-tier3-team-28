@@ -33,7 +33,6 @@ export function CollectionSelect() {
     } else {
       setCollectionName(pathname.slice(1));
     }
-    setFetching(false);
   }, [pathname, collections]);
 
   useEffect(() => {
@@ -43,10 +42,11 @@ export function CollectionSelect() {
 
       const data = (await res.json()) as Collection[];
       setCollections(data);
+      setFetching(false);
     }
 
     getCollectionList();
-  }, []);
+  }, [pathname]);
 
   return (
     <DropdownMenu>
@@ -62,7 +62,7 @@ export function CollectionSelect() {
           </div>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="sm:w-52">
+      <DropdownMenuContent className="sm:w-60">
         <DropdownMenuLabel>Collections</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="max-h-52 overflow-y-scroll">
@@ -79,7 +79,7 @@ export function CollectionSelect() {
                   >
                     <div className="flex items-center gap-4">
                       {collection.private ? <LuFolderLock /> : <LuFolderOpen />}
-                      {collection.title}
+                      <p className="max-w-[160px] truncate">{collection.title}</p>
                     </div>
                     {pathname.slice(1) === collection.id && <LuCheck className="ml-2" />}
                   </DropdownMenuItem>

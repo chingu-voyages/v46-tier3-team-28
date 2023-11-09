@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { CollectionCard } from './collection-card';
 import { CreateDialog } from './create-dialog';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 async function getCollections() {
   const sesssion = await getServerSession(authOptions);
@@ -24,7 +25,9 @@ export async function CollectionList() {
         <div className="col-span-3 max-w-2xl rounded-md bg-white border w-full mx-auto p-14 flex flex-col justify-center items-center">
           <h2 className="text-xl font-semibold text-center">No Collections found</h2>
           <Image width={380} height={380} src="/working-vacation.svg" alt="vacation girl illustration" />
-          <CreateDialog />
+          <CreateDialog>
+            <Button>Create Collection</Button>
+          </CreateDialog>
         </div>
       )}
     </section>

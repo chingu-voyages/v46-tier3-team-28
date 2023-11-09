@@ -1,21 +1,21 @@
 'use client';
 
-import { FormLabel } from '@/components/form-label';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LuLoader } from 'react-icons/lu';
 import { toast } from 'sonner';
+import { ItemForm } from './item-form';
 
-type MetaTags = {
+export type MetaTags = {
   title: string;
   description: string;
   image: string | null;
+  link?: string;
 };
 
 type ItemDialogProps = {
@@ -54,7 +54,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
 
       if (res.ok) {
         setLoadingMeta(false);
-        setMetaTagsData(metaTags);
+        setMetaTagsData({ ...metaTags, link });
       }
     } catch (error) {
       toast.error('Server Error. Please try again!');
@@ -78,13 +78,14 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
 
       if (!res.ok) {
         toast.error('Server error! Please try again.');
+        setLoading(false);
+        return;
       }
 
       setOpen(false);
       setLoading(false);
       router.refresh();
       toast.success('Item added successfully!');
-      console.log(res);
     } catch (error) {
       toast.error('Server error! Please try again.');
     }
@@ -112,6 +113,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
                 <Input
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && fetchMetaData()}
                   placeholder="https://www.your.cu/stom?link"
                 />
               </div>
@@ -120,72 +122,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-5">
-              <form onSubmit={handleSubmit} className="p-6 pt-4 col-span-3 border-t space-y-6">
-                <div>
-                  <FormLabel>Title</FormLabel>
-                  <Input
-                    required
-                    name="title"
-                    className="bg-background"
-                    value={metaTagsData.title}
-                    onChange={(e) => setMetaTagsData((state) => ({ ...state, title: e.target.value }) as MetaTags)}
-                  />
-                </div>
-                <div>
-                  <FormLabel>Description</FormLabel>
-                  <Textarea
-                    className="bg-background"
-                    name="description"
-                    rows={4}
-                    value={metaTagsData.description}
-                    onChange={(e) =>
-                      setMetaTagsData((state) => ({ ...state, description: e.target.value }) as MetaTags)
-                    }
-                  />
-                </div>
-                <div>
-                  <FormLabel>URL</FormLabel>
-                  <Input
-                    required
-                    name="url"
-                    className="bg-background"
-                    value={link}
-                    onChange={(e) => setLink(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <FormLabel>Image URL</FormLabel>
-                  <Input
-                    className="bg-background"
-                    name="image"
-                    value={metaTagsData.image ?? ''}
-                    onChange={(e) => setMetaTagsData((state) => ({ ...state, image: e.target.value }) as MetaTags)}
-                  />
-                </div>
-                <Button className="w-full" disabled={loading}>
-                  {loading && <LuLoader className="animate-spin mr-2" />}
-                  Create Item
-                </Button>
-              </form>
-              <div className="col-span-2 border-l border-t bg-secondary flex items-center">
-                <div className="m-2 border rounded-md">
-                  <div>
-                    <img
-                      width={335}
-                      height={185}
-                      className="rounded-t-md"
-                      onError={(e) => (e.currentTarget.src = '/default-image.jpeg')}
-                      alt="Image preview"
-                      src={metaTagsData.image ?? ''}
-                    />
-                  </div>
-                  <div className="border-t p-2 bg-background rounded-b-md text-center">
-                    <small className="font-medium">Image Preview</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ItemForm loading={loading} handleSubmit={handleSubmit} itemData={metaTagsData} />
           )}
         </div>
       </DialogContent>

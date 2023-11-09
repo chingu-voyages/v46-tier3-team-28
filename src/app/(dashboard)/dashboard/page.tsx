@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { CollectionList } from './components/collection-list';
 import { CreateDialog } from './components/create-dialog';
 
@@ -7,7 +8,9 @@ export default async function Page() {
       <div className="border-b bg-background">
         <div className="flex max-w-screen-xl mx-auto flex-row justify-between items-center h-36">
           <h1 className="text-3xl font-bold tracking-tight">My Collections</h1>
-          <CreateDialog />
+          <CreateDialog>
+            <Button>Create Collection</Button>
+          </CreateDialog>
         </div>
       </div>
       <CollectionList />
