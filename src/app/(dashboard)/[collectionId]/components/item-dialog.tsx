@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LuLoader } from 'react-icons/lu';
 import { toast } from 'sonner';
 
@@ -112,6 +112,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
                 <Input
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
+                  onKeyDown={(e) => (e.key === 'Enter' && fetchMetaData())}
                   placeholder="https://www.your.cu/stom?link"
                 />
               </div>

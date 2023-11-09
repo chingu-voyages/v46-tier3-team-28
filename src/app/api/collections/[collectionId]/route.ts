@@ -48,19 +48,19 @@ export async function DELETE(req: Request, context: z.infer<typeof routeContextS
 
     // Check if user has access
     if (!(await verifyIfUserHasAccess(params.collectionId))) {
-      return new Response(null, { status: 403 });
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 403 });
     }
 
     // Delete collection
-    await db.delete(collections).where(eq(collections.id, params.collectionId));
+    const res = await db.delete(collections).where(eq(collections.id, params.collectionId));
 
-    return new Response(null, { status: 204 });
+    return new Response(JSON.stringify({ success: 'Deleted Successfully', res }), { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });
     }
 
-    return new Response(null, { status: 500 });
+    return new Response(JSON.stringify(error), { status: 500 });
   }
 }
 
@@ -69,7 +69,7 @@ async function verifyIfUserHasAccess(collectionId: string) {
   const result = await db
     .select({ count: sql<number>`count(*)` })
     .from(collections)
-    .where(sql`${collections.id} = ${parseInt(collectionId)} and ${collections.userId} = ${session?.user.id}`);
+    .where(sql`${collections.id} = ${collectionId} and ${collections.userId} = ${session?.user.id}`);
 
   const { count } = result[0];
   return count > 0;
