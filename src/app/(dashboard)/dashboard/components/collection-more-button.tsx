@@ -34,12 +34,6 @@ export function CollectionMoreButton({ collection }: Collection) {
   const [editDialog, setEditDialog] = useState(false);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (editDialog === false) {
-  //     setDropdownOpen(false);
-  //   }
-  // }, [editDialog]);
-
   const handleDelete = () => {
     setDropdownOpen(false);
     const res = fetch(`/api/collections/${collection.id}`, {
@@ -65,8 +59,6 @@ export function CollectionMoreButton({ collection }: Collection) {
       const data = new FormData(event.currentTarget);
       const objFormData = Object.fromEntries(data.entries());
 
-      // objFormData.id = uuidv4();
-
       const res = await fetch(`/api/collections/${collection.id}`, {
         method: 'PATCH',
         headers: {
@@ -76,7 +68,6 @@ export function CollectionMoreButton({ collection }: Collection) {
       });
 
       if (res.ok) {
-        // Redirect to unique collection page
         toast.success('Successfully updated collection!');
         router.refresh();
 
@@ -125,7 +116,7 @@ export function CollectionMoreButton({ collection }: Collection) {
               onSelect={(e) => e.preventDefault()}
               className="cursor-pointer text-destructive hover:bg-destructive hover:text-background focus:bg-destructive focus:text-background"
             >
-              <LuTrash2 className="mr-2" /> Delete
+              <LuTrash2 className="mr-2 w-6 h-6" /> Delete
             </DropdownMenuItem>
           </AlertDialogTrigger>
           <AlertDialogContent>
