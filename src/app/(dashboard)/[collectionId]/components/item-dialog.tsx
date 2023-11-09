@@ -112,6 +112,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
                 <Input
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
+                  onKeyDown={(e) => (e.key === 'Enter' && fetchMetaData())}
                   placeholder="https://www.your.cu/stom?link"
                 />
               </div>
