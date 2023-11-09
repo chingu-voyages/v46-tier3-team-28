@@ -21,7 +21,7 @@ export default function Navigation({ session }: { session: Session }) {
           <button onClick={() => signIn()}>Sign in</button>
         )} */}
         <div className="flex items-center">
-          <Link className="font-semibold" href="/dashboard">
+          <Link className="font-semibold" href="/">
             <MainLogo />
           </Link>
           <Divider className="h-8 w-8 text-border sm:ml-4" />
