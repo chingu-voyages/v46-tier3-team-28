@@ -122,7 +122,7 @@ export function ItemDialog({ trigger, collectionId }: ItemDialogProps) {
               </Button>
             </div>
           ) : (
-            <ItemForm loading={loading} handleSubmit={handleSubmit} metaData={metaTagsData} />
+            <ItemForm loading={loading} handleSubmit={handleSubmit} itemData={metaTagsData} />
           )}
         </div>
       </DialogContent>

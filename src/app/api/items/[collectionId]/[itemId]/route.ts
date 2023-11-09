@@ -57,13 +57,13 @@ export async function DELETE(req: Request, context: z.infer<typeof itemRouteCont
 
     // Check if user has access
     if (!(await verifyIfUserHasAccess(params.collectionId))) {
-      return new Response(null, { status: 403 });
+      return new Response(JSON.stringify('Unauthorized'), { status: 403 });
     }
 
     // Delete collection
     await db.delete(items).where(eq(items.id, parseInt(params.itemId)));
 
-    return new Response(null, { status: 204 });
+    return new Response(JSON.stringify('Successfully Deleted Item'), { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });

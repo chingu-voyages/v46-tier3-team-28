@@ -1,23 +1,24 @@
 'use client';
 
+import { FormLabel } from '@/components/form-label';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
-import { LuLoader, LuTrash2 } from 'react-icons/lu';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { LuLoader } from 'react-icons/lu';
 import { MetaTags } from './item-dialog';
-import { FormLabel } from '@/components/form-label';
 
 type ItemFormProps = {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  metaData: MetaTags;
+  itemData: MetaTags;
   loading: boolean;
   update?: boolean;
 };
 
-export function ItemForm({ handleSubmit, metaData, loading, update }: ItemFormProps) {
-  const [metaTagsData, setMetaTagsData] = useState<MetaTags>(metaData);
-
+//TODO: Delete is not closing modal reliably
+export function ItemForm({ handleSubmit, itemData, loading, update }: ItemFormProps) {
+  const [metaTagsData, setMetaTagsData] = useState<MetaTags>(itemData);
+ 
   return (
     <div className="grid grid-cols-5">
       <form onSubmit={handleSubmit} className="p-6 pt-4 col-span-3 border-t space-y-6">
@@ -60,18 +61,10 @@ export function ItemForm({ handleSubmit, metaData, loading, update }: ItemFormPr
             onChange={(e) => setMetaTagsData((state) => ({ ...state, image: e.target.value }) as MetaTags)}
           />
         </div>
-        <div className="flex gap-8">
-          {update && (
-            <Button variant="destructive" disabled={loading}>
-              <LuTrash2 className="mr-2" />
-              Delete
-            </Button>
-          )}
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading && <LuLoader className="animate-spin mr-2" />}
-            {update ? 'Update Item' : 'Create Item'}
-          </Button>
-        </div>
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading && <LuLoader className="animate-spin mr-2" />}
+          {update ? 'Update Item' : 'Create Item'}
+        </Button>
       </form>
       <div className="col-span-2 border-l border-t bg-secondary flex items-center">
         <div className="m-2 border rounded-md">
