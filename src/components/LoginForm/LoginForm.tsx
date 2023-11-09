@@ -3,12 +3,17 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { LuLoader2 } from 'react-icons/lu';
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   function validateLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.target as HTMLFormElement);
     const email = formData.get('email');
     const password = formData.get('password');
@@ -16,9 +21,9 @@ const LoginForm = () => {
     signIn('credentials', { email, password, redirect: false }).then((response) => {
       if (response?.ok) {
         toast.success('Successful login!');
-        window.location.href = '/dashboard';
+        // window.location.href = '/dashboard';
 
-        // redirect('/dashboard');
+        router.push('/dashboard');
       }
 
       if (response?.error) {
@@ -82,17 +87,20 @@ const LoginForm = () => {
             />
           </fieldset>
           <p className="w-full flex flex-row justify-end cursor-pointer">Forgot password?</p>
-          <input
+          <button
             className="bg-[#633CFF] text-white w-full flex flex-col justify-center items-center font-medium py-3 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
             type="submit"
-            value="Login"
-          />
+            disabled={loading}
+          >
+            {loading && <LuLoader2 className="animate-spin" />}
+            Login
+          </button>
           <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 place-items-center">
             <div className="h-[1px] w-2/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
             <h5 className="text-[#737373] w-full text-center col-span-2">OR CONTINUE WITH</h5>
             <div className="h-[1px] w-1/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
           </fieldset>
-          <OAuthButtons />
+          <OAuthButtons loading={loading} setLoading={setLoading} />
           <p className="text-[#737373] text-center">
             Don't have an account?{' '}
             <Link className="text-[#633CFF]" href="/register">

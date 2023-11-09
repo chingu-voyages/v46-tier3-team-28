@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
 import { toast } from 'sonner';
+import { LuLoader2 } from 'react-icons/lu';
+import { useRouter } from 'next/navigation';
 
 const RegistrationForm = () => {
   const [name, setName] = useState('');
@@ -11,9 +13,12 @@ const RegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordErrorView, setPasswordErrorView] = useState('hidden');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   async function registerUser(e: any) {
     e.preventDefault();
+    setLoading(true);
 
     if (password.length < 8) {
       setErrorMessage('Password must contain at least 8 characters.');
@@ -45,12 +50,18 @@ const RegistrationForm = () => {
     });
     console.log(response);
     if (response.ok) {
+      setLoading(false);
       toast.success('You are now registered!');
       setName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
+      router.push('/login');
+    } else if (response.status === 409) {
+      setLoading(false);
+      toast.error('User already exists');
     } else {
+      setLoading(false);
       toast.error('Invalid credentials!');
     }
   }
@@ -147,11 +158,14 @@ const RegistrationForm = () => {
             <p className={`w-full text-red-500 text-xs ${passwordErrorView}`}>{errorMessage}</p>
           </fieldset>
           <p className="w-full text-left text-xs text-[#737373]">Password must contain at least 8 characters.</p>
-          <input
-            className="bg-[#633CFF] text-white w-full flex flex-col justify-center items-center font-medium py-3 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
+          <button
+            className="bg-[#633CFF] text-white w-full flex flex-row justify-center items-center font-medium py-3 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
             type="submit"
-            value="Create new account"
-          />
+            disabled={loading}
+          >
+            {loading && <LuLoader2 className="animate-spin mr-2" />}
+            Create new account
+          </button>
 
           <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 place-items-center">
             <div className="h-[1px] w-2/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
@@ -159,7 +173,7 @@ const RegistrationForm = () => {
             <div className="h-[1px] w-1/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
           </fieldset>
 
-          <OAuthButtons />
+          <OAuthButtons loading={loading} setLoading={setLoading} />
           <p className="text-[#737373] text-center">
             Already have an account?{' '}
             <Link className="text-[#633CFF]" href="/login">
