@@ -60,7 +60,7 @@ export async function DELETE(req: Request, context: z.infer<typeof itemRouteCont
       return new Response(JSON.stringify('Unauthorized'), { status: 403 });
     }
 
-    // Delete collection
+    // Delete items
     await db.delete(items).where(eq(items.id, parseInt(params.itemId)));
 
     return new Response(JSON.stringify('Successfully Deleted Item'), { status: 200 });
