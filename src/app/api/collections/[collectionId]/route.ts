@@ -26,7 +26,7 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
       .update(collections)
       .set({
         title: payload.title,
-        private: payload.private,
+        private: payload.private === 'on' ? true : false,
         description: payload.description,
       })
       .where(eq(collections.id, params.collectionId));

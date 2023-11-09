@@ -20,7 +20,7 @@ export type Collection = {
 
 export function CollectionCard({ collection }: Collection) {
   return (
-    <Card className="hover:shadow-lg">
+    <Card className="hover:shadow-lg h-fit">
       <div className="flex flex-row">
         <Link className="w-full" href={`/${collection.id}`}>
           <CardHeader>

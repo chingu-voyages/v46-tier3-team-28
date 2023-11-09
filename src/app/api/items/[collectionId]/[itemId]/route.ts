@@ -45,7 +45,7 @@ export async function PATCH(req: Request, context: z.infer<typeof itemRouteConte
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });
     }
-
+    console.log({ error });
     return new Response(null, { status: 500 });
   }
 }
@@ -78,7 +78,7 @@ async function verifyIfUserHasAccess(collectionId: string) {
   const result = await db
     .select({ count: sql<number>`count(*)` })
     .from(collections)
-    .where(sql`${collections.id} = ${parseInt(collectionId)} and ${collections.userId} = ${session?.user.id}`);
+    .where(sql`${collections.id} = ${collectionId} and ${collections.userId} = ${session?.user.id}`);
 
   const { count } = result[0];
   return count > 0;
