@@ -19,15 +19,29 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LuMoreHorizontal, LuPenLine, LuTrash2 } from 'react-icons/lu';
 import { toast } from 'sonner';
 import { Collection } from './collection-card';
 import { useRouter } from 'next/navigation';
+import { CreateDialog } from './create-dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { CollectionForm } from './collection-form';
 
 export function CollectionMoreButton({ collection }: Collection) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [loadingEdit, setLoadingEdit] = useState(false);
+  const [editDialog, setEditDialog] = useState(false);
   const router = useRouter();
-  const handleDelete = async () => {
+
+  // useEffect(() => {
+  //   if (editDialog === false) {
+  //     setDropdownOpen(false);
+  //   }
+  // }, [editDialog]);
+
+  const handleDelete = () => {
+    setDropdownOpen(false);
     const res = fetch(`/api/collections/${collection.id}`, {
       method: 'DELETE',
     }).then((res) => {
@@ -43,41 +57,94 @@ export function CollectionMoreButton({ collection }: Collection) {
     router.refresh();
   };
 
-  return (
-    <AlertDialog>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" onClick={() => console.log(collection)} className={cn('h-auto px-2 z-10')}>
-            <LuMoreHorizontal />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem className="cursor-pointer">
-            <LuPenLine className="mr-2" /> Edit
-          </DropdownMenuItem>
+  async function handleEdit(event: React.FormEvent<HTMLFormElement>) {
+    try {
+      event.preventDefault();
+      setLoadingEdit(true);
 
+      const data = new FormData(event.currentTarget);
+      const objFormData = Object.fromEntries(data.entries());
+
+      // objFormData.id = uuidv4();
+
+      const res = await fetch(`/api/collections/${collection.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objFormData),
+      });
+
+      if (res.ok) {
+        // Redirect to unique collection page
+        toast.success('Successfully updated collection!');
+        router.refresh();
+
+        setLoadingEdit(false);
+        setDropdownOpen(false);
+      } else {
+        setLoadingEdit(false);
+        toast.error('Cannot update Collection. Please try again!');
+      }
+    } catch (error) {
+      setLoadingEdit(false);
+      toast.error('Server Error! Please try again');
+    }
+  }
+
+  return (
+    <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className={cn('h-auto px-2 z-10')}>
+          <LuMoreHorizontal />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <Dialog open={editDialog} onOpenChange={setEditDialog}>
+          <DialogTrigger asChild>
+            <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="cursor-pointer">
+              <LuPenLine className="mr-2" /> Edit
+            </DropdownMenuItem>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{`Edit ${collection.title}`}</DialogTitle>
+            </DialogHeader>
+            <CollectionForm
+              buttonText="Update Collection"
+              collection={collection}
+              loading={loadingEdit}
+              handleSubmit={handleEdit}
+            />
+          </DialogContent>
+        </Dialog>
+
+        <AlertDialog>
           <AlertDialogTrigger asChild>
-            <DropdownMenuItem className="cursor-pointer text-destructive hover:bg-destructive hover:text-background focus:bg-destructive focus:text-background">
+            <DropdownMenuItem
+              onSelect={(e) => e.preventDefault()}
+              className="cursor-pointer text-destructive hover:bg-destructive hover:text-background focus:bg-destructive focus:text-background"
+            >
               <LuTrash2 className="mr-2" /> Delete
             </DropdownMenuItem>
           </AlertDialogTrigger>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{`Delete ${collection.title}`}</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your collection and remove all associated data
-            from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete} className={cn(buttonVariants({ variant: 'destructive' }))}>
-            Delete
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{`Delete ${collection.title}`}</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your collection and remove all associated
+                data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setDropdownOpen(false)}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete} className={cn(buttonVariants({ variant: 'destructive' }))}>
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
