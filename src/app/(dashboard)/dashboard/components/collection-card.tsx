@@ -55,7 +55,7 @@ export async function CollectionCard({ collection }: Collection) {
       <CardContent className="flex justify-between">
         <div className="flex items-center gap-2.5">
           <LuLayers />
-          <p>{itemNo} Items</p>
+          <p className="text-sm">{itemNo} Items</p>
         </div>
         <CollectionMoreButton collection={collection} />
       </CardContent>
