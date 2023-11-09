@@ -49,7 +49,6 @@ export async function CollectionCard({ collection }: Collection) {
             </CardTitle>
             <CardDescription>{collection.description}</CardDescription>
           </CardHeader>
-          {/* <div className="py-4 pr-6 flex flex-col items-end justify-between"></div> */}
         </Link>
       </div>
       <CardContent className="flex justify-between">

@@ -12,6 +12,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button, buttonVariants } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,13 +20,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { LuMoreHorizontal, LuPenLine, LuTrash2 } from 'react-icons/lu';
 import { toast } from 'sonner';
 import { Collection } from './collection-card';
-import { useRouter } from 'next/navigation';
-import { CreateDialog } from './create-dialog';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { CollectionForm } from './collection-form';
 
 export function CollectionMoreButton({ collection }: Collection) {
@@ -45,10 +44,12 @@ export function CollectionMoreButton({ collection }: Collection) {
 
     toast.promise(res, {
       loading: 'Deleting Collection...',
-      success: 'Collection deleted successfully!',
+      success: () => {
+        router.refresh();
+        return 'Collection deleted successfully!';
+      },
       error: 'Failed to delete collection. Please try again!',
     });
-    router.refresh();
   };
 
   async function handleEdit(event: React.FormEvent<HTMLFormElement>) {
