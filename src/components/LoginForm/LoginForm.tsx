@@ -1,11 +1,12 @@
 'use client';
+import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import OAuthButtons from '@/components/OAuthButtons/OAuthButtons';
-import { redirect, useRouter } from 'next/navigation';
-import { toast } from 'sonner';
 import { LuLoader2 } from 'react-icons/lu';
+import { toast } from 'sonner';
+import { Button } from '../ui/button';
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,6 @@ const LoginForm = () => {
     signIn('credentials', { email, password, redirect: false }).then((response) => {
       if (response?.ok) {
         toast.success('Successful login!');
-        // window.location.href = '/dashboard';
 
         router.push('/dashboard');
       }
@@ -87,14 +87,10 @@ const LoginForm = () => {
             />
           </fieldset>
           <p className="w-full flex flex-row justify-end cursor-pointer">Forgot password?</p>
-          <button
-            className="bg-[#633CFF] text-white w-full flex flex-col justify-center items-center font-medium py-3 rounded-md hover:bg-opacity-80 cursor-pointer transition-all duration-300"
-            type="submit"
-            disabled={loading}
-          >
+          <Button className="bg-[#633CFF] hover:bg-[#633CFF]-80 text-base h-12" type="submit" disabled={loading}>
             {loading && <LuLoader2 className="animate-spin" />}
             Login
-          </button>
+          </Button>
           <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 place-items-center">
             <div className="h-[1px] w-2/5 md:w-full lg:w-full xl:w-full bg-[#D9D9D9] flex self-center"></div>
             <h5 className="text-[#737373] w-full text-center col-span-2">OR CONTINUE WITH</h5>
