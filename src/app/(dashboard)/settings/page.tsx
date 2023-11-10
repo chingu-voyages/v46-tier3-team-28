@@ -7,7 +7,7 @@ function page() {
 
   return (
     <div>Contacts page
-        <ContactCard />
+        {/* <ContactCard /> */}
     </div>
   )
 }

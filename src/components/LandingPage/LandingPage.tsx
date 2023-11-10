@@ -9,8 +9,7 @@ const LandingPage = () => {
         className="h-screen w-full absolute inset-0 object-cover object-center"
         width={3000}
         height={2000}
-        // src="https://drive.google.com/uc?id=1cKwEzm40736Bb6NTlcTUdKJlO2URp8gr"
-        src="https://drive.google.com/uc?id=1qsyXKGTF-blPlb-ZPrTC-xQhJg-DkwWG"
+        src="/assets/images/landing-page-bg.jpg"
         alt="Landing page bakground image"
       />
       <div className="h-screen w-screen absolute inset-0 bg-gradient-to-b from-[#0e0e0e] to-[#0000001A]" />

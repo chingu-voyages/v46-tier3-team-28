@@ -12,7 +12,7 @@ type CollectionFormProps = {
   collection?: Collection['collection'];
   loading: boolean;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  buttonText: string;
+  buttonText?: string;
 };
 
 export function CollectionForm({ collection, loading, handleSubmit, buttonText }: CollectionFormProps) {
@@ -72,7 +72,7 @@ export function CollectionForm({ collection, loading, handleSubmit, buttonText }
       </div>
       <Button className="w-full" type="submit" disabled={loading}>
         {loading && <LuLoader className="animate-spin mr-2" />}
-        {buttonText ?? "Create Collection"}
+        {buttonText ?? 'Create Collection'}
       </Button>
     </form>
   );

@@ -11,7 +11,7 @@ export default function OAuthButtons({ loading, setLoading }: OAuthButtonsProps)
   return (
     <>
       <button
-        className="w-full rounded-md border-[1px] border-[#633CFF] py-4 flex flex-row justify-center gap-2"
+        className="w-full rounded-md border-[1px] border-[#633CFF] py-4 flex flex-row items-center justify-center gap-2"
         disabled={loading}
         onClick={(e) => {
           e.preventDefault();
@@ -41,7 +41,7 @@ export default function OAuthButtons({ loading, setLoading }: OAuthButtonsProps)
         <h6 className="font-medium text-black"> Github</h6>
       </button>
       <button
-        className="w-full rounded-md border-[1px] border-[#633CFF] py-4 flex flex-row justify-center gap-2"
+        className="w-full rounded-md border-[1px] border-[#633CFF] py-4 flex flex-row items-center justify-center gap-2"
         disabled={loading}
         onClick={(e) => {
           e.preventDefault();
