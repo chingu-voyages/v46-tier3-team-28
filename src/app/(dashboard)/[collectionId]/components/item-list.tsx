@@ -25,7 +25,7 @@ export function ItemList({ items, collectionId }: ItemListProps) {
       ) : (
         <div className="col-span-3 max-w-2xl rounded-md bg-white border w-full mx-auto p-14 flex flex-col justify-center items-center">
           <h2 className="text-xl font-semibold text-center">No items in collection</h2>
-          <Image width={380} height={380} src="/working-vacation.svg" alt="vacation girl illustration" />
+          <Image width={380} height={380} src="/working-vacation-purple.svg" alt="vacation girl illustration" />
           <ItemDialog
             trigger={
               <Button>
