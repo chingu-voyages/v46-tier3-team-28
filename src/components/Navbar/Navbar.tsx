@@ -1,12 +1,14 @@
 'use client';
-import { useState } from 'react';
-import { signOut } from 'next-auth/react';
-import { BsFillMoonStarsFill } from 'react-icons/bs';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { BsFillMoonStarsFill } from 'react-icons/bs';
+import { buttonVariants } from '../ui/button';
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const { status } = useSession();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -38,9 +40,15 @@ function Navbar() {
               onClick={() => setDarkMode(!darkMode)}
               className="cursor-pointer text-2xl ml-3" // Add margin for spacing
             />
-            <Link className=" font-bold dark:text-white dark:hover:text-[#633CFF] hover:text-[#633CFF]" href="/login">
-              Login
-            </Link>
+            {status === 'authenticated' ? (
+              <Link className={buttonVariants({ variant: 'outline' })} href="/dashboard">
+                Dashboard
+              </Link>
+            ) : (
+              <Link className="font-bold dark:text-white dark:hover:text-[#633CFF] hover:text-[#633CFF]" href="/login">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </nav>
