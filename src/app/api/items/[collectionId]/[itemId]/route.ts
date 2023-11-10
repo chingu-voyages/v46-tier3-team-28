@@ -45,7 +45,7 @@ export async function PATCH(req: Request, context: z.infer<typeof itemRouteConte
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });
     }
-
+    console.log({ error });
     return new Response(null, { status: 500 });
   }
 }
@@ -57,13 +57,13 @@ export async function DELETE(req: Request, context: z.infer<typeof itemRouteCont
 
     // Check if user has access
     if (!(await verifyIfUserHasAccess(params.collectionId))) {
-      return new Response(null, { status: 403 });
+      return new Response(JSON.stringify('Unauthorized'), { status: 403 });
     }
 
-    // Delete collection
+    // Delete items
     await db.delete(items).where(eq(items.id, parseInt(params.itemId)));
 
-    return new Response(null, { status: 204 });
+    return new Response(JSON.stringify('Successfully Deleted Item'), { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });
@@ -78,7 +78,7 @@ async function verifyIfUserHasAccess(collectionId: string) {
   const result = await db
     .select({ count: sql<number>`count(*)` })
     .from(collections)
-    .where(sql`${collections.id} = ${parseInt(collectionId)} and ${collections.userId} = ${session?.user.id}`);
+    .where(sql`${collections.id} = ${collectionId} and ${collections.userId} = ${session?.user.id}`);
 
   const { count } = result[0];
   return count > 0;

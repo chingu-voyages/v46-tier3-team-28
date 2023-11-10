@@ -18,7 +18,7 @@ export const collectionCreateSchema = z.object({
 
 export const collectionPatchSchema = z.object({
   title: z.string().optional(),
-  private: z.boolean().optional(),
+  private: z.string().optional(),
   description: z.string(),
 });
 

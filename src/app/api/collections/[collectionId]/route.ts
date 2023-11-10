@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { collections } from '@/db/schema';
+import { collections, items } from '@/db/schema';
 import { collectionPatchSchema } from '@/lib/validators/collections';
 import { eq, sql } from 'drizzle-orm';
 import { getServerSession } from 'next-auth';
@@ -26,7 +26,7 @@ export async function PATCH(req: Request, context: z.infer<typeof routeContextSc
       .update(collections)
       .set({
         title: payload.title,
-        private: payload.private,
+        private: payload.private === 'on' ? true : false,
         description: payload.description,
       })
       .where(eq(collections.id, params.collectionId));
@@ -51,8 +51,9 @@ export async function DELETE(req: Request, context: z.infer<typeof routeContextS
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 403 });
     }
 
-    // Delete collection
+    // Delete collection and related items
     const res = await db.delete(collections).where(eq(collections.id, params.collectionId));
+    await db.delete(items).where(eq(items.collectionId, params.collectionId));
 
     return new Response(JSON.stringify({ success: 'Deleted Successfully', res }), { status: 200 });
   } catch (error) {
