@@ -34,31 +34,6 @@ function Navbar() {
           <div className="flex items-center gap-5">
             {' '}
             {/* Container for icons */}
-            <button
-              data-collapse-toggle="navbar-hamburger"
-              type="button"
-              className="inline-flex items-center justify-center p-2 w-10 h-10 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover-bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-hamburger"
-              aria-expanded={isDropdownOpen}
-              onClick={toggleDropdown}
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            </button>
             <BsFillMoonStarsFill
               onClick={() => setDarkMode(!darkMode)}
               className="cursor-pointer text-2xl ml-3" // Add margin for spacing
@@ -66,50 +41,6 @@ function Navbar() {
             <Link className=" font-bold dark:text-white dark:hover:text-[#633CFF] hover:text-[#633CFF]" href="/login">
               Login
             </Link>
-          </div>
-          <div className={`w-full ${isDropdownOpen ? 'block' : 'hidden'}`} id="navbar-hamburger">
-            <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-              <li>
-                <a
-                  href="/profile"
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded dark:bg-blue-600"
-                  aria-current="page"
-                  onClick={closeDropdown}
-                >
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/register"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover-bg-gray-700 dark:hover:text-white"
-                  onClick={closeDropdown}
-                >
-                  Sign Up
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 md:dark:hover-text-white dark:hover-bg-gray-700 dark:hover:text-white"
-                  onClick={closeDropdown}
-                >
-                  Login
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover-bg-gray-100 dark:text-gray-400 dark:hover-bg-gray-700 dark:hover:text-white"
-                  onClick={() => {
-                    closeDropdown();
-                    signOut();
-                  }}
-                >
-                  Sign Out
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
