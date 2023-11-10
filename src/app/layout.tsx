@@ -12,6 +12,12 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Page Pocket',
   description: 'Capture, Categorize, and Share with Ease',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Page Pocket',
+    description: 'Capture, Categorize, and Share with Ease',
+    images: ['/web-preview.png'],
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
