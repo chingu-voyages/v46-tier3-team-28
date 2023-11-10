@@ -88,7 +88,7 @@ const LoginForm = () => {
           </fieldset>
           <p className="w-full flex flex-row justify-end cursor-pointer">Forgot password?</p>
           <Button className="bg-[#633CFF] hover:bg-[#633CFF]-80 text-base h-12" type="submit" disabled={loading}>
-            {loading && <LuLoader2 className="animate-spin" />}
+            {loading && <LuLoader2 className="animate-spin mr-2" />}
             Login
           </Button>
           <fieldset className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 place-items-center">
